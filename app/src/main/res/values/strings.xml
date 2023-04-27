@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BestApp2023</string>
+    <string name="Welcome">Benvenuto</string>
+    <string name="IntroButton">Clicca qui per iniziare!</string>
 </resources>

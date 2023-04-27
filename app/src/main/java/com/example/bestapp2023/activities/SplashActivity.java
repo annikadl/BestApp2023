@@ -1,8 +1,7 @@
-package com.example.bestapp2023;
+package com.example.bestapp2023.activities;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
@@ -26,5 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         // TODO: check user
         // if not logged switch to login fragment
     }
+
+    // TODO: onClick
 
 }
