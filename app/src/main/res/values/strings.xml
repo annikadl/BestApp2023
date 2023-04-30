@@ -1,7 +1,8 @@
 <resources>
     <!-- splash activity -->
     <string name="app_name">BestApp2023</string>
-    <string name="Welcome">Benvenuto, accetta i permessi per continuare</string>
+    <string name="Welcome">Benvenuto</string>
+    <string name="permessi">Accetta i permessi per continuare</string>
     <string name="IntroButton">Clicca qui!</string>
 
     <!-- login e sign up -->
