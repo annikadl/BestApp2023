@@ -20,6 +20,11 @@ import com.example.bestapp2023.models.PermissionManager;
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
+    // la richiesta dei permessi funziona, ma se li rifiuto una volta non
+    // me li richiede
+
+    // TODO: far sì che i permessi vengano richiesti se non concessi.
+
     private static final String TAG = SplashActivity.class.getCanonicalName();
 
     // Only positive int
@@ -37,13 +42,12 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         // TODO: check user
-        // copiato dal bro. TODO: Enter Activity che gestisce il login e la registrazione
+        // TODO: Enter Activity che gestisce il login e la registrazione
 
 
-        // copiato anche questo dal bro.
-        // TODO: richiedere permessi e fare permission manager
         // Check permissions -- Do not request at the login!
 
+        // copiato anche questo dal bro
         PermissionManager pm = new PermissionManager(this);
         if (!pm.askNeededPermissions(PERMISSION_REQUEST_CODE, false)) {
             // Go to MainActivity
@@ -81,6 +85,10 @@ public class SplashActivity extends AppCompatActivity {
         Log.d(TAG, "All the needed permissions are granted!");
         this.goToActivity(MainActivity.class);
     }
+
+
+
+
 
 
 }

@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- SONO DOPPI PERCHé GLI HO CAMBIATO IL NOME PER SEMPLICITà MA DA QUALCHE PARTE NON LI RICONOSCE -->
+
+    <!-- nostra lista colori -->
+    <color name="arancione1">#FF7514</color>
+    <color name="arancione2">#FF8000</color>
+    <color name="arancione3">#FFA500</color>
+    <color name="arancione4">#FFCC99</color>
+    <color name="azzurro1">#FF03DAC5</color>
+    <color name="azzurro2">#FF018786</color>
 </resources>
