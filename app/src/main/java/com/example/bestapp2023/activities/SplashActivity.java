@@ -2,9 +2,12 @@ package com.example.bestapp2023.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
@@ -59,11 +62,25 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    // TODO: onClick
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode != PERMISSION_REQUEST_CODE) {
+            return;
+        }
 
+        for (int res : grantResults) {
+            if (res == PackageManager.PERMISSION_DENIED) {
+                Log.w(TAG, "A needed permission is not granted!");
+                return;
+            }
+        }
 
-
+        // All permissions are granted
+        Log.d(TAG, "All the needed permissions are granted!");
+        this.goToActivity(MainActivity.class);
+    }
 
 
 }
