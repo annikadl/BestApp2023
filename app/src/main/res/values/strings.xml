@@ -11,6 +11,8 @@
     <string name="password2">inserisci di nuovo la password</string>
     <string name="loginText">Accedi</string>
     <string name="signupText">Registrati</string>
+    <string name="switchtosignup">Non sei registrato? Iscriviti ora</string>
+    <string name="switchtologin">Sei già registrato? Accedi</string>
 
 
 </resources>

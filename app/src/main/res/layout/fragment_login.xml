@@ -48,7 +48,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/username"
+                android:id="@+id/email"
                 android:drawablePadding="8dp"
                 android:hint="@string/email"
                 android:padding="8dp"
@@ -86,10 +86,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Not yet registered? SignUp Now"
+        android:text="@string/switchtosignup"
         android:textSize="14sp"
         android:textAlignment="center"
-        android:id="@+id/signupText"
+        android:id="@+id/switchtosignup"
         android:textColor="@color/arancione1"
         android:layout_marginBottom="20dp"/>
 

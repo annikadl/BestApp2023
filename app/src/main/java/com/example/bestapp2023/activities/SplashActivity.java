@@ -15,6 +15,7 @@ import java.util.Random;
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.PermissionManager;
+import com.google.android.gms.auth.api.Auth;
 
 
 @SuppressLint("CustomSplashScreen")
@@ -43,6 +44,12 @@ public class SplashActivity extends AppCompatActivity {
 
         // TODO: check user
         // TODO: Enter Activity che gestisce il login e la registrazione
+        // Firebase auth: https://firebase.google.com/docs/auth/android/start?hl=en#java
+        FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+        if (!auth.isAuthenticated()) {
+            // Go to Activity for LogIn or SignUp
+            this.goToActivity(EnterActivity.class);
+        }
 
 
         // Check permissions -- Do not request at the login!
