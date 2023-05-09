@@ -18,3 +18,9 @@
   
 
 Specifiche completate:
+
+- Autenticazione e registrazione -> va solo tolto il bottone quando il login è stato fatto
+
+- Implementazione di almeno una Activity con uno o più Fragment (Servizio periodico?)
+
+- Layout dell'applicazione -> circa, mancano un menù a tendina e qualche activity in più

@@ -42,14 +42,17 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //Forse non da fare
         // TODO: check user
         // TODO: Enter Activity che gestisce il login e la registrazione
+
         // Firebase auth: https://firebase.google.com/docs/auth/android/start?hl=en#java
-        FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+        /*FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
         if (!auth.isAuthenticated()) {
-            // Go to Activity for LogIn or SignUp
-            this.goToActivity(EnterActivity.class);
-        }
+            // Go to MainActivity
+            //this.goToActivity(EnterActivity.class);
+            this.goToActivity(MainActivity.class);
+        }*/
 
 
         // Check permissions -- Do not request at the login!

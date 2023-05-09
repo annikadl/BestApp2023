@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Network operations: https://developer.android.com/training/basics/network-ops/connecting -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
 
     <!-- CP Calendar: https://developer.android.com/guide/topics/providers/calendar-provider -->
     <!-- <uses-permission android:name="android.permission.READ_CALENDAR" /> -->
@@ -13,8 +13,6 @@
     <!-- GPS: https://developer.android.com/training/location/permissions -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- GALLERY: https://developer.android.com/about/versions/14/changes/partial-photo-video-access -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <!-- CONTACTS: https://developer.android.com/training/contacts-provider/retrieve-names -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -40,7 +38,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -14,5 +14,16 @@
     <string name="switchtosignup">Non sei registrato? Iscriviti ora</string>
     <string name="switchtologin">Sei già registrato? Accedi</string>
 
+    <!-- main activity -->
+    <string name = "address">Indirizzo</string>
+    <string name = "Pizza">Pizza</string>
+    <string name = "Sushi">Sushi</string>
+    <string name = "Piadina">Piadina</string>
+    <string name = "Hamburger">Hamburger</string>
+    <string name = "Cinese">Cinese</string>
+    <string name = "Dolci">Dolci</string>
+    <string name = "cerca">Cerca</string>
+    <string name = "accesso">Accedi</string>
+
 
 </resources>
