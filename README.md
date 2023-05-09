@@ -16,7 +16,7 @@
 - Validazione del file Manifest e del suo contenuto (come sono definiti i componenti,
   permessi, ..) [3pt]
   
--Content provider -> Lista contatti , promozione invito amici [3pt]
+- Content provider -> Lista contatti , promozione invito amici [3pt]
 
 Specifiche completate:
 
