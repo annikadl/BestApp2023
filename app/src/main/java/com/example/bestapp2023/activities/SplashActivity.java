@@ -74,6 +74,17 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // TODO: check user
+        // TODO: Enter Activity che gestisce il login e la registrazione
+        // Firebase auth: https://firebase.google.com/docs/auth/android/start?hl=en#java
+
+        // se commento questo mi chiede i permessi senza farmi fare il login
+        /*FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+        if (!auth.isAuthenticated()) {
+            // Go to Activity for LogIn or SignUp
+            this.goToActivity(EnterActivity.class);
+        } */
     }
 
     @Override
