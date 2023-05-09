@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.fragments.LoginFragment;
+import com.example.bestapp2023.models.FirebaseWrapper;
 
 public class MainActivity extends AppCompatActivity{
     Button login;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity{
         });*/
 
         login = (Button)findViewById(R.id.link_login);
+        login.setVisibility(View.VISIBLE);
+
+        TextView login_text = findViewById(R.id.login_word);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +57,11 @@ public class MainActivity extends AppCompatActivity{
                 MainActivity.this.goToActivity(EnterActivity.class);
             }
         });
+
+        FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+        if (auth.isAuthenticated()) {
+            login.setVisibility(View.GONE);
+            login_text.setVisibility(View.GONE);
+        }
     }
 }
