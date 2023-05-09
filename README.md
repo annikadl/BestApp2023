@@ -19,8 +19,10 @@
 
 Specifiche completate:
 
-- Autenticazione e registrazione -> va solo tolto il bottone quando il login è stato fatto
+- Autenticazione e registrazione -> va solo tolto il bottone quando il login è stato fatto [6pt]
 
 - Implementazione di almeno una Activity con uno o più Fragment (Servizio periodico?)
 
 - Layout dell'applicazione -> circa, mancano un menù a tendina e qualche activity in più
+
+- Richiesta di almeno un permesso “restricted” [2 pt]
