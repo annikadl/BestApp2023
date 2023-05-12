@@ -24,6 +24,10 @@
     <string name = "Dolci">Dolci</string>
     <string name = "cerca">Cerca</string>
     <string name = "accesso">Accedi</string>
+    <string name = "home">Home</string>
+    <string name = "dati">I miei dati</string>
+    <string name = "prenotazioni">Le mie prenotazioni</string>
+    <string name = "signout">Esci</string>
 
 
 </resources>
