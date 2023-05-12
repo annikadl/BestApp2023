@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,10 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 
 public class LoginFragment extends LogFragment {
+    ImageButton home;
+    ImageButton profile;
+    ImageButton invitefriend;
+
     private static final FirebaseAuth AUTH_STATUS = FirebaseAuth.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
@@ -54,7 +59,6 @@ public class LoginFragment extends LogFragment {
         View externalView = inflater.inflate(R.layout.fragment_login, container, false);
 
         //metodo per passare al fragment di SignUp
-
         TextView link = externalView.findViewById(R.id.switchtosignup);
         link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +115,8 @@ public class LoginFragment extends LogFragment {
                     error_email.getError();
             }
         });
+
+
 
         return externalView;
     }
