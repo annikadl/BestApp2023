@@ -27,6 +27,8 @@ import com.example.bestapp2023.models.FirebaseWrapper;
  */
 public class SignupFragment extends LogFragment {
 
+    int password_length = 8;
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,15 @@ public class SignupFragment extends LogFragment {
                 if (!password.getText().toString().equals(password2.getText().toString())) {
                     // TODO: Better error handling + remove this hardcoded strings
                     Toast
-                            .makeText(SignupFragment.this.requireActivity(), "Passwords are different", Toast.LENGTH_LONG)
+                            .makeText(SignupFragment.this.requireActivity(), "Le password sono diverse", Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
+
+                if (password.getText().length() < password_length) {
+                    // TODO: Better error handling + remove this hardcoded strings
+                    Toast
+                            .makeText(SignupFragment.this.requireActivity(), "Lunghezza almeno 8 caratteri", Toast.LENGTH_LONG)
                             .show();
                     return;
                 }

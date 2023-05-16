@@ -63,47 +63,5 @@ public class MainActivity extends AppCompatActivity{
             login.setVisibility(View.GONE);
             login_text.setVisibility(View.GONE);
         }
-
-        //Button associato alle impostazioni
-
-        Button settings = findViewById(R.id.settings_button);
-
-        //Listener associato al button per le impostazioni
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        //Button associato all'invito amici
-
-        Button inviteFriendsButton = findViewById(R.id.friend_button);
-
-        //Listener associato al button per l'invito amici
-        inviteFriendsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Qui andra messo il fragment/activity che vogliamo far aprire
-
-                //Intent intent = new Intent(MainActivity.this, InviteFriendsActivity.class);
-               // startActivity(intent);
-            }
-        });
-
-        //Button associato al profilo
-
-        Button profile = findViewById(R.id.profilo);
-
-        //Listener associato al button per il profilo
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 }

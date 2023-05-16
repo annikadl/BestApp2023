@@ -31,6 +31,9 @@
             android:name=".activities.EnterActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
