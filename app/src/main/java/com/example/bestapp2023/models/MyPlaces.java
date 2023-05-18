@@ -5,6 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MyPlaces {
@@ -39,11 +40,46 @@ public class MyPlaces {
         this.Open = open;
     }
 
-    public boolean IsOpen()
-    {
-        return this.IsOpen;
+    public boolean isOpen() {
+        return IsOpen;
     }
 
+    public int getClose() {
+        return Close;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public int getOpen() {
+        return Open;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyPlaces myPlaces = (MyPlaces) o;
+        return Open == myPlaces.Open && Close == myPlaces.Close && IsOpen == myPlaces.IsOpen && City.equals(myPlaces.City) && Name.equals(myPlaces.Name) && Type.equals(myPlaces.Type) && Address.equals(myPlaces.Address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(City, Name, Type, Address, Open, Close, IsOpen);
+    }
 
     public void firebaseDbCallback(Task<DataSnapshot> result) {
         // NOTE: This is a callback -- I do not have any guarantee when it is invoked!
