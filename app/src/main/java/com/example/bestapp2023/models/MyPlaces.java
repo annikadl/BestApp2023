@@ -16,6 +16,9 @@ public class MyPlaces {
     private String Type;
     private String Address;
 
+    private int Open;
+
+    private int Close;
     private boolean IsOpen;
 
     //Costruttore della classe
@@ -26,14 +29,14 @@ public class MyPlaces {
 
     //Costruttore con parametri
 
-    public MyPlaces(String city,String name,String type,String address)
+    public MyPlaces(String city,String name,String type,String address,int close,int open)
     {
         this.City = city;
         this.Name = name;
         this.Type = type;
         this.Address = address;
-
-
+        this.Close = close;
+        this.Open = open;
     }
 
     public boolean IsOpen()
