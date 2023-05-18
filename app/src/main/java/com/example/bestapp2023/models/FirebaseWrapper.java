@@ -9,6 +9,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -101,6 +108,89 @@ public class FirebaseWrapper {
                             callback.invoke(task.isSuccessful());
                         }
                     });
+        }
+
+        public String getUid() {
+            // TODO: remove this assert and better handling of non logged-in users
+            assert this.isAuthenticated();
+            return this.getUser().getUid();
+        }
+    }
+
+
+    // Database
+// Choose the db: https://firebase.google.com/docs/database/rtdb-vs-firestore?hl=en&authuser=1
+    /*
+    // NB: For security reason update the access rules from firebase console --> e.g., an user can access on its data!
+    //  https://firebase.google.com/docs/database/security/get-started?hl=en&authuser=1
+    // rules: https://firebase.google.com/docs/rules/rules-and-auth?authuser=0
+    // doc: https://firebase.google.com/docs/rules/basics?utm_source=studio#realtime-database_5
+    // Example
+    {
+      "rules": {
+        "events": {
+          "$uid": {
+            ".read": "auth.uid === $uid",
+            ".write": "auth.uid === $uid",
+          }
+        }
+      },
+    }
+     */
+    public static class RTDatabase {
+        private final static String TAG = RTDatabase.class.getCanonicalName();
+
+        // This is the name of the root of the DB (in the JSON format)
+        private static final String CHILD = "Places";
+
+        public static DatabaseReference getDb() {
+            /*
+            NOTE: I suppose that the DB is structured as:
+            "events" : {
+                "<UID_user1> : {..},
+                "<UID_user2> : {..},
+                ...
+            }
+            You have to change the child name(s) based on the structure of your JSON object
+             */
+            // https://firebase.google.com/docs/projects/locations?hl=it#rtdb-locations
+            DatabaseReference ref =
+                    FirebaseDatabase
+                            .getInstance("https://console.firebase.google.com/u/0/project/bestapp2023-2b115/database/bestapp2023-2b115-default-rtdb/data/~2F ")
+                            .getReference(CHILD);
+
+            // Return only the events of the current user
+            String uid = new FirebaseWrapper.Auth().getUid();
+            if (uid == null) {
+                return null;
+            }
+
+            return ref.child(uid);
+        }
+
+    /*public void writeDbData(MyEvent myEvent) {
+        DatabaseReference ref = getDb();
+        if (ref == null) {
+            return;
+        }
+
+        // NOTE: You can attach listeners to handle the results (e.g., onSuccessListener, ..)
+        ref.child(String.valueOf(myEvent.getEventId())).setValue(myEvent);
+    }*/
+
+        public void readDbData(FirebaseWrapper.Callback callback) {
+            DatabaseReference ref = getDb();
+            if (ref == null) {
+                return;
+            }
+
+            // Read from the database
+            ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    callback.invoke(task);
+                }
+            });
         }
     }
 

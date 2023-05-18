@@ -29,5 +29,11 @@
     <string name = "prenotazioni">Le mie prenotazioni</string>
     <string name = "signout">Esci</string>
 
+    <!-- Dropdown menu -->
+    <string-array name="citta">
+        <item>Genova</item>
+        <item>Savona</item>
+    </string-array>
+
 
 </resources>

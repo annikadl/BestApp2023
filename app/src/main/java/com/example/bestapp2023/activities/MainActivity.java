@@ -6,15 +6,24 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.fragments.LoginFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
+import com.example.bestapp2023.models.MyPlaces;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends AppCompatActivity{
     ImageButton home;
@@ -74,6 +83,15 @@ public class MainActivity extends AppCompatActivity{
         //Metodo per chiamare o l'activity del Profilo o la schermata di Login quando il pulsante "Profile" viene premuto
         profile = (ImageButton)findViewById(R.id.profile);
 
+        Spinner citta_menu = (Spinner) findViewById(R.id.citta_menu);
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.citta, android.R.layout.simple_spinner_item);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            citta_menu.setAdapter(adapter);
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,5 +131,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+
+
     }
+
 }

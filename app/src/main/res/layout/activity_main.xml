@@ -38,12 +38,13 @@
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp">
 
-                    <EditText
-                        android:id="@+id/input_address"
+                    <Spinner
+                        android:id="@+id/citta_menu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/address"
-                        android:inputType="text" />
+                        android:layout_height="40dp"
+                        android:backgroundTint="@color/arancione2"
+                        android:background="@color/white"
+                        android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!--  Pulsante "Cerca" e inferiori -->
