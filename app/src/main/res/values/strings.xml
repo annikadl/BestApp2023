@@ -6,7 +6,8 @@
     <string name="IntroButton">Clicca qui!</string>
 
     <!-- login e sign up -->
-    <string name="email">email</string>
+    <string name="nome">Nome e cognome</string>
+    <string name="email">Email</string>
     <string name="password">password</string>
     <string name="password2">inserisci di nuovo la password</string>
     <string name="loginText">Accedi</string>

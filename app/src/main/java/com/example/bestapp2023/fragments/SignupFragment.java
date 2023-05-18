@@ -66,14 +66,16 @@ public class SignupFragment extends LogFragment {
                 EditText email = externalView.findViewById(R.id.newemail);
                 EditText password = externalView.findViewById(R.id.password1);
                 EditText password2 = externalView.findViewById(R.id.password2);
+                EditText name = externalView.findViewById(R.id.newname);
 
                 if (email.getText().toString().isEmpty() ||
                         password.getText().toString().isEmpty() ||
-                        password2.getText().toString().isEmpty()) {
+                        password2.getText().toString().isEmpty() || name.getText().toString().isEmpty()) {
                     // TODO: Better error handling + remove this hardcoded strings
                     email.setError("Email is required");
                     password.setError("Password is required");
                     password2.setError("Password is required");
+                    name.setError("Name is required");
                     return;
                 }
 
@@ -96,6 +98,7 @@ public class SignupFragment extends LogFragment {
                 // Perform SignIn
                 FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
                 auth.signUp(
+                        name.getText().toString(),
                         email.getText().toString(),
                         password.getText().toString(),
                         FirebaseWrapper.Callback
