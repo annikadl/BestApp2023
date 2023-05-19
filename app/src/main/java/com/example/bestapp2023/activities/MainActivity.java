@@ -1,11 +1,13 @@
 package com.example.bestapp2023.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.app.FragmentManager;
+
 import android.content.Intent;
+
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.fragments.LoginFragment;
+import com.example.bestapp2023.fragments.RestaurantFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.MyPlaces;
 import com.google.firebase.database.DataSnapshot;
@@ -81,16 +84,16 @@ public class MainActivity extends AppCompatActivity{
         //Fine parte pulsante Accedi
 
         //Metodo per chiamare o l'activity del Profilo o la schermata di Login quando il pulsante "Profile" viene premuto
-        profile = (ImageButton)findViewById(R.id.profile);
+        profile = (ImageButton) findViewById(R.id.profile);
 
         Spinner citta_menu = (Spinner) findViewById(R.id.citta_menu);
-            // Create an ArrayAdapter using the string array and a default spinner layout
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                    R.array.citta, android.R.layout.simple_spinner_item);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            // Apply the adapter to the spinner
-            citta_menu.setAdapter(adapter);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.citta, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        citta_menu.setAdapter(adapter);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,15 +104,14 @@ public class MainActivity extends AppCompatActivity{
                 FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
                 if (auth.isAuthenticated()) {
                     MainActivity.this.goToActivity(ProfileActivity.class);
-                }
-                else {
+                } else {
                     MainActivity.this.goToActivity(EnterActivity.class);
                 }
             }
         });
 
         //Metodo per chiamare la Main Activity quando il pulsante "Home" viene premuto
-        home = (ImageButton)findViewById(R.id.home);
+        home = (ImageButton) findViewById(R.id.home);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity{
         });
 
         //Metodo per chiamare il fragment per invitare gli amici (ancora da fare)
-        invitefriend = (ImageButton)findViewById(R.id.invitefriends);
+        invitefriend = (ImageButton) findViewById(R.id.invitefriends);
 
         invitefriend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +133,24 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+        // PARTE FRAGMENT E FRAGMENT MANAGER
+        // cerca ristoranti
+        Button cerca = findViewById(R.id.cerca);
+
+        androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
+        cerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                // For optimizations -- See: https://developer.android.com/reference/androidx/fragment/app/FragmentTransaction#setReorderingAllowed(boolean)
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.replace(R.id.container_login, new RestaurantFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        //////////////////////////////////////////////////////////////////////////////////
 
 
     }

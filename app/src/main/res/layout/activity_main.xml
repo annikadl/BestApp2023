@@ -42,8 +42,8 @@
                         android:id="@+id/citta_menu"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:backgroundTint="@color/arancione2"
                         android:background="@color/white"
+                        android:backgroundTint="@color/arancione2"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,10 +97,13 @@
 
         </ScrollView>
 
-        <!--Layout per la toolbar in fondo alla schermata, per navigare fra home, profilo e invita amici -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <!--Layout per la toolbar in fondo alla schermata, per navigare fra home, profilo e invita amici -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -145,7 +148,6 @@
                 android:textSize="18sp"
                 tools:ignore="OnClick" />
         </androidx.appcompat.widget.Toolbar>
-        </RelativeLayout>
+    </RelativeLayout>
 
-    </FrameLayout>
 </RelativeLayout>
