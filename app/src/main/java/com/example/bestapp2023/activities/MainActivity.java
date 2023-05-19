@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.fragments.InviteFriendsFragment;
 import com.example.bestapp2023.fragments.LoginFragment;
 import com.example.bestapp2023.fragments.RestaurantFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity{
     ImageButton home;
     ImageButton profile;
     ImageButton invitefriend;
+
+
+    // FRAGMENT MANAGER
+    androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
+
 
     //Funzione per andare in una nuova acrivity
     private void goToActivity(Class<?> activity) {
@@ -117,7 +123,9 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 //visto che sono già nella MainActivity, rendo il pulsante "Home" non cliccabile
-                home.setClickable(false);
+                //home.setClickable(false);
+
+                MainActivity.this.goToActivity(MainActivity.class);
             }
         });
 
@@ -128,16 +136,21 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 //visto che non ho ancora creato il fragment per invitare gli amici, rendo il bottone non cliccabile
-                invitefriend.setClickable(false);
+                // invitefriend.setClickable(false);
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.replace(R.id.container_login, new InviteFriendsFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
 
 
         // PARTE FRAGMENT E FRAGMENT MANAGER
-        // cerca ristoranti
-        Button cerca = findViewById(R.id.cerca);
-
-        androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        // ricerca ristoranti
+      Button cerca = findViewById(R.id.cerca);
 
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +165,7 @@ public class MainActivity extends AppCompatActivity{
         });
         //////////////////////////////////////////////////////////////////////////////////
 
+       // FirebaseWrapper.RTDatabase.getDb();
 
     }
 
