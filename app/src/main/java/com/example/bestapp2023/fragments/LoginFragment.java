@@ -121,41 +121,6 @@ public class LoginFragment extends LogFragment {
         return externalView;
     }
 
-    /*private void login(String email, String password, TextInputLayout error_email, TextInputLayout error_password, EditText emailtext, EditText passwordtext) {
-        if (Credential_Validation(emailtext, passwordtext, error_email, error_password)) {
-            AUTH_STATUS.signInWithEmailAndPassword(email, password);
-                    //problema in questa riga con "OnCompleteListener"
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-
-                                FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-                                mUser.getIdToken(true)
-                                        .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                                            public void onComplete(@NonNull Task<GetTokenResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    String idToken = task.getResult().getToken();
-                                                    Map<String, Object> tokenMap = new HashMap<>();
-                                                    tokenMap.put("token_id", idToken);
-
-                                                    //Firestore da implementare per salvare i dati - penso crashi per questo
-                                                    //DATA_BASE.collection("UTENTI").document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).update(tokenMap);
-                                                }
-                                            //}
-                                        //});
-
-                            //}
-                                                else{
-                                                    error_email.setError("Indirizzo email non valido");
-                                                    //checkStatus(null, LoginPageDrawer.this,
-                                                            //getString(R.string.logFailed));
-                                                }
-                                            }
-                                        });
-        }
-    }*/
-
     private boolean Credential_Validation(EditText email, EditText password, TextInputLayout error_email, TextInputLayout error_password) {
         boolean email_valid = this.Email_Validation(email, error_email);
 
