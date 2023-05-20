@@ -20,7 +20,6 @@ public class MyPlaces {
     private int Open;
 
     private int Close;
-    private boolean IsOpen;
 
     //Costruttore della classe
 
@@ -40,9 +39,7 @@ public class MyPlaces {
         this.Open = open;
     }
 
-    public boolean isOpen() {
-        return IsOpen;
-    }
+
 
     public int getClose() {
         return Close;
@@ -73,30 +70,37 @@ public class MyPlaces {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MyPlaces myPlaces = (MyPlaces) o;
-        return Open == myPlaces.Open && Close == myPlaces.Close && IsOpen == myPlaces.IsOpen && City.equals(myPlaces.City) && Name.equals(myPlaces.Name) && Type.equals(myPlaces.Type) && Address.equals(myPlaces.Address);
+        return Open == myPlaces.Open && Close == myPlaces.Close && City.equals(myPlaces.City) && Name.equals(myPlaces.Name) && Type.equals(myPlaces.Type) && Address.equals(myPlaces.Address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(City, Name, Type, Address, Open, Close, IsOpen);
+        return Objects.hash(City, Name, Type, Address, Open, Close);
     }
 
-    public void firebaseDbCallback(Task<DataSnapshot> result) {
-        // NOTE: This is a callback -- I do not have any guarantee when it is invoked!
-        // --> Do not wait for these results on the main activity
-        assert result != null;
+    public static class Collection<T extends MyPlaces> {
+        private static final String TAG = Collection.class.getCanonicalName();
+        public final List<T> places;
 
-        if (result.isSuccessful()) {
-          List<MyPlaces>  MyPlacesArray = new ArrayList<MyPlaces>();
+        public Collection(List<T> places) {
+            this.places = places;
+        }
 
-            // Iterate over the db objects
-            for (DataSnapshot child : result.getResult().getChildren()) {
-                MyPlaces Place = child.getValue(MyPlaces.class);
-                MyPlacesArray.add(Place);
+        public void firebaseDbCallback(Task<DataSnapshot> result) {
+            // NOTE: This is a callback -- I do not have any guarantee when it is invoked!
+            // --> Do not wait for these results on the main activity
+            assert result != null;
+
+            if (result.isSuccessful()) {
+                List<MyPlaces> MyPlacesArray = new ArrayList<MyPlaces>();
+
+                // Iterate over the db objects
+                for (DataSnapshot child : result.getResult().getChildren()) {
+                    MyPlaces Place = child.getValue(MyPlaces.class);
+                    MyPlacesArray.add(Place);
+                }
+
             }
-
         }
     }
-
-
 }

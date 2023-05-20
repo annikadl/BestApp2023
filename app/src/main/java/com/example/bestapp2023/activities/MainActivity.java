@@ -3,8 +3,9 @@ package com.example.bestapp2023.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import android.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
         // - parto con home fragment
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setReorderingAllowed(true);
-        fragmentTransaction.replace(R.id.container_login, new HomeFragment());
+        fragmentTransaction.add(R.id.container_login, new HomeFragment());
         // fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
@@ -135,7 +136,10 @@ public class MainActivity extends AppCompatActivity{
         });
 
         // TODO: bottone cerca, che però è nella home. Dove va la logica?
+
     }
+
+
 
     // Quello che avevo nella Enter Activity
     public void renderFragment(boolean isLogin) {

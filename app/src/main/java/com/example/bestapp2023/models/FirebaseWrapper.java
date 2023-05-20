@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 // NOTE: With firebase we have to do a network request --> We need to add the permission in the AndroidManifest.xml
 //      -> ref: https://developer.android.com/training/basics/network-ops/connecting
@@ -164,7 +166,7 @@ public class FirebaseWrapper {
             // https://firebase.google.com/docs/projects/locations?hl=it#rtdb-locations
             DatabaseReference ref =
                     FirebaseDatabase
-                            .getInstance("https://console.firebase.google.com/u/0/project/bestapp2023-2b115/database/bestapp2023-2b115-default-rtdb/data/~2F ")
+                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
                             .getReference(CHILD);
 
             // Return only the events of the current user
@@ -173,7 +175,7 @@ public class FirebaseWrapper {
                 return null;
             }
 
-            return ref.child(uid);
+            return ref;
         }
 
     /*public void writeDbData(MyEvent myEvent) {
@@ -200,6 +202,12 @@ public class FirebaseWrapper {
                 }
             });
         }
+
+        public static void SaveDbData()
+        {
+
+        }
     }
+
 
 }

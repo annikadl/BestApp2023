@@ -1,5 +1,7 @@
 package com.example.bestapp2023.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.activities.RecyclerViewActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 
 public class HomeFragment extends LogFragment {
@@ -37,25 +40,23 @@ public class HomeFragment extends LogFragment {
         citta_menu.setAdapter(adapter); */
 
 
-       /* Button cerca = getView().findViewById(R.id.cerca);
-
-        cerca.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                // For optimizations -- See: https://developer.android.com/reference/androidx/fragment/app/FragmentTransaction#setReorderingAllowed(boolean)
-                fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.replace(R.id.container_login, new RestaurantFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        }); */
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View externalView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        Button cerca = (Button) externalView.findViewById(R.id.cerca);
+
+        cerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
+                startActivity(intent);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
 
         return externalView;
     }
