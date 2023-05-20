@@ -17,12 +17,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.fragments.HomeFragment;
 import com.example.bestapp2023.fragments.InviteFriendsFragment;
+import com.example.bestapp2023.fragments.LogFragment;
 import com.example.bestapp2023.fragments.LoginFragment;
+import com.example.bestapp2023.fragments.ProfileFragment;
 import com.example.bestapp2023.fragments.RestaurantFragment;
+import com.example.bestapp2023.fragments.SignupFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.MyPlaces;
 import com.google.firebase.database.DataSnapshot;
@@ -55,25 +59,42 @@ public class MainActivity extends AppCompatActivity{
         // fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+        ///////////////////// BOTTONI /////////////////////////////////////
 
-        //Metodo per chiamare o l'activity del Profilo o la schermata di Login quando il pulsante "Profile" viene premuto
+        // - Bottone profile
        ImageButton profile = findViewById(R.id.profile);
 
-       // TODO: far diventare profilo un fragment
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //visto che non sono nella ProfileActivity, rendo il pulsante "Profile" cliccabile
-                profile.setClickable(true);
-
+                Fragment FragmentTest = fragmentManager.findFragmentByTag("ProfileFragment");
                 FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
-                if (auth.isAuthenticated()) {
-                    MainActivity.this.goToActivity(ProfileActivity.class);
-                } else {
-                    MainActivity.this.goToActivity(EnterActivity.class);
+
+                boolean logged = false;
+
+                // check autenticazione funziona
+                // ho usato un booleano perchè la auth.isAuthenticated direttamente nell'if
+                // della transizione non funzionava
+                if(auth.isAuthenticated()){
+                    Log.d("Auth", "Sono qui");
+                    logged = true;
                 }
+
+                Log.d("Auth", "isAuthenticated: " + logged);
+
+                // transizione tra login/registrazione e profilo avviene correttamente
+                if (FragmentTest == null && logged)
+                  {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.replace(R.id.container_login, new ProfileFragment(),"ProfileFragment");
+                    fragmentTransaction.commit();
+                 } else if (FragmentTest == null){
+                    renderFragment(true);
+               }
             }
         });
+
 
         // - Bottone home
         ImageButton home = findViewById(R.id.home);
@@ -93,13 +114,15 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        // - bottone invita amici
+
+        // - Bottone invita amici
         ImageButton invitefriend = findViewById(R.id.invitefriends);
 
         invitefriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment FragmentTest = fragmentManager.findFragmentByTag("InviteFriendsFragment");
+
                 if(FragmentTest == null)
                 {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -107,10 +130,43 @@ public class MainActivity extends AppCompatActivity{
                 fragmentTransaction.replace(R.id.container_login, new InviteFriendsFragment(),"InviteFriendsFragment");
                 // fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
-            }}
+                }
+            }
         });
 
+        // TODO: bottone cerca, che però è nella home. Dove va la logica?
+    }
+
+    // Quello che avevo nella Enter Activity
+    public void renderFragment(boolean isLogin) {
+        Fragment fragment = null;
+        if (isLogin) {
+            fragment = LogFragment.newInstance(LoginFragment.class, "signinCallback", boolean.class);
+        } else {
+            fragment = LogFragment.newInstance(SignupFragment.class, "signinCallback", boolean.class);
+        }
+        if (this.fragmentManager == null) {
+            this.fragmentManager = this.getSupportFragmentManager();
+        }
+
+        FragmentTransaction fragmentTransaction = this.fragmentManager.beginTransaction();
+        fragmentTransaction.setReorderingAllowed(true);
+        fragmentTransaction.replace(R.id.container_login, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void signinCallback(boolean result) {
+        if (!result) {
+            // TODO: Better handling of the error message --> Put in a textview of the activity/fragment
+            Toast
+                    .makeText(this, "Username or password are not valid", Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            // Go To Splash to check the permissions
+            Intent intent = new Intent(this, SplashActivity.class);
+            this.startActivity(intent);
+            this.finish();
+        }
     }
 
 }

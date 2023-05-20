@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bestapp2023.R;
-import com.example.bestapp2023.activities.EnterActivity;
+import com.example.bestapp2023.activities.MainActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,7 +63,7 @@ public class LoginFragment extends LogFragment {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((EnterActivity)LoginFragment.this.requireActivity()).renderFragment(false);
+                ((MainActivity)LoginFragment.this.requireActivity()).renderFragment(false);
 
                 /*Fragment fragment = new SignupFragment();
                 FragmentManager fragmentManager = getFragmentManager();

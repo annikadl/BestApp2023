@@ -16,7 +16,7 @@ import com.example.bestapp2023.models.FirebaseWrapper;
 
 // l'ho messo che estende LogFragment così abbiamo già una serie di funzioni generiche
 // per la gestione dei fragment
-public class RestaurantFragment extends LogFragment {
+public class ProfileFragment extends LogFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -30,7 +30,7 @@ public class RestaurantFragment extends LogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
-        View externalView = inflater.inflate(R.layout.fragment_restaurant, container, false);
+        View externalView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         return externalView;
     }

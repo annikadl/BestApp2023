@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bestapp2023.R;
-import com.example.bestapp2023.activities.EnterActivity;
+import com.example.bestapp2023.activities.MainActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 
 /**
@@ -47,7 +47,7 @@ public class SignupFragment extends LogFragment {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((EnterActivity) SignupFragment.this.requireActivity()).renderFragment(true);
+                ((MainActivity) SignupFragment.this.requireActivity()).renderFragment(true);
 
                 /*Fragment fragment = new LoginFragment();
                 FragmentManager fragmentManager = getFragmentManager();
