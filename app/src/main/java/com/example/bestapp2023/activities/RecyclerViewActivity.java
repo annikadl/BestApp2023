@@ -24,12 +24,16 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-          DatabaseQuery("City","Genova");
+        //RICEVO DAL HOME FRAGMENT IL BUCKET CONTENETE IL TIPO DA SCEGLIERE
+        String BucketStringtype = getIntent().getStringExtra("Type");
+        //CHIAMO LA FUNZIONE
+        DatabaseQuery("Type",BucketStringtype);
 
     }
 

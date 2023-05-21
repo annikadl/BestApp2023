@@ -75,10 +75,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlPiadina"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:background="@drawable/shape_layout_button">
+
             <ImageView
                 android:id="@+id/ivPiadina"
                 android:layout_width="wrap_content"
@@ -86,8 +88,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/piadina">
-            </ImageView>
+                android:src="@drawable/piadina"></ImageView>
+
             <TextView
                 android:id="@+id/tvPiadina"
                 android:layout_width="match_parent"
@@ -96,16 +98,17 @@
                 android:background="#FFFFFF"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/Piadina"
-                android:textColor="#000000"
-                android:textAppearance="@style/TextAppearance.AppCompat">
-            </TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="#000000"></TextView>
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlHamburger"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:background="@drawable/shape_layout_button">
+
             <ImageView
                 android:id="@+id/ivHamburger"
                 android:layout_width="wrap_content"
@@ -113,8 +116,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/hamburger">
-            </ImageView>
+                android:src="@drawable/hamburger"></ImageView>
+
             <TextView
                 android:id="@+id/tvHamburger"
                 android:layout_width="match_parent"
@@ -123,16 +126,17 @@
                 android:background="#FFFFFF"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/Hamburger"
-                android:textColor="#000000"
-                android:textAppearance="@style/TextAppearance.AppCompat">
-            </TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="#000000"></TextView>
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlCinese"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:background="@drawable/shape_layout_button">
+
             <ImageView
                 android:id="@+id/ivCinese"
                 android:layout_width="wrap_content"
@@ -140,8 +144,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cinese">
-            </ImageView>
+                android:src="@drawable/cinese"></ImageView>
+
             <TextView
                 android:id="@+id/tvCinese"
                 android:layout_width="match_parent"
@@ -150,9 +154,8 @@
                 android:background="#FFFFFF"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/Cinese"
-                android:textColor="#000000"
-                android:textAppearance="@style/TextAppearance.AppCompat">
-            </TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="#000000"></TextView>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rlDolci"
