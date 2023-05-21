@@ -154,26 +154,11 @@ public class FirebaseWrapper {
         private static final String CHILD = "Places";
 
         public static DatabaseReference getDb() {
-            /*
-            NOTE: I suppose that the DB is structured as:
-            "events" : {
-                "<UID_user1> : {..},
-                "<UID_user2> : {..},
-                ...
-            }
-            You have to change the child name(s) based on the structure of your JSON object
-             */
-            // https://firebase.google.com/docs/projects/locations?hl=it#rtdb-locations
+
             DatabaseReference ref =
                     FirebaseDatabase
                             .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
                             .getReference(CHILD);
-
-            // Return only the events of the current user
-            String uid = new FirebaseWrapper.Auth().getUid();
-            if (uid == null) {
-                return null;
-            }
 
             return ref;
         }
@@ -203,10 +188,6 @@ public class FirebaseWrapper {
             });
         }
 
-        public static void SaveDbData()
-        {
-
-        }
     }
 
 

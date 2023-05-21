@@ -27,6 +27,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
+
     //Funzione per andare in una nuova acrivity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
@@ -41,9 +42,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         //RICEVO DAL HOME FRAGMENT IL BUCKET CONTENETE IL TIPO DA SCEGLIERE
         String BucketStringtype = getIntent().getStringExtra("Type");
-        //String BucketStringcity = getIntent().getStringExtra("City");
+
+        String BucketStringcity =getIntent().getStringExtra("City");
+
         //CHIAMO LA FUNZIONE
-        DatabaseQuery("Type",BucketStringtype);
+        DatabaseQuery("Type",BucketStringtype,BucketStringcity);
 
         //Listener per il pulsante della barra superiore che riporta alla home
         ImageButton back = findViewById(R.id.back);
@@ -57,12 +60,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     }
 
-    //POSSO FARE QUERY INNESTATE DEL TIPO
-    //            .orderByChild("City")
-    //            .equalTo(city)
-    //            .orderByChild("Type")
-    //            .equalTo(placeType);
-    public void DatabaseQuery (String Category , String Intype)
+    public void DatabaseQuery (String Category , String Intype, String InCity)
     {
         //Prendo riferimento al database
         DatabaseReference ref = FirebaseWrapper.RTDatabase.getDb();
@@ -75,10 +73,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 PlacesList.clear(); // Pulisci la lista prima di aggiungere nuovi elementi
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    MyPlaces Place = data.getValue(MyPlaces.class);
-                    System.out.println(Place.getName());
-                    PlacesList.add(Place);
-                    Log.d("Lista", "AGGIUNTO CORRETTAMENTE ELEMENTO ALLA LISTA");
+                    //ESEGUO IL CHECK SULLA VARIABILE DATA, SE IL CAMPO CITY E UGUALE A QUELLO PASSATO
+                    //INIZALIZZO OGGETTO DI CLASSE PLACES ASSOCIATO
+                    if (data.child("City").getValue(String.class).equals(InCity)) {
+                        MyPlaces Place = data.getValue(MyPlaces.class);
+                        System.out.println(Place.getName());
+                        PlacesList.add(Place);
+                        Log.d("Lista", "AGGIUNTO CORRETTAMENTE ELEMENTO ALLA LISTA");
+                    }
                 }
                 MyPlaces.Collection PlacesCollection = new MyPlaces.Collection<>(PlacesList);
 

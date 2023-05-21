@@ -132,18 +132,6 @@ public class HomeFragment extends LogFragment {
             }
         });
 
-        cerca.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
-                //PASSO COME BUCKET LA FUNZIONE TYPE DA PASSARE DA METTERE NELLA QUERY
-                intent.putExtra("Type",Type);
-                //intent.putExtra("City",City);
-                startActivity(intent);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
-            }
-        });
-
         //Metodo per passare il nome della città scelta nello Spinner come stringa
         citta_menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -159,6 +147,23 @@ public class HomeFragment extends LogFragment {
 
             }
         });
+
+
+        //LISTENER ASSOCIATO AL REALE CAMBIO DI SCHERMATA, OVVERO QUELLO DEL BOTTONE CERCA
+
+        cerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
+                //PASSO COME BUCKET LE VARIABILI DA METTERE NELLA QUERY
+                intent.putExtra("Type",Type);
+                intent.putExtra("City",City);
+                startActivity(intent);
+                ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+
+
 
         return externalView;
     }

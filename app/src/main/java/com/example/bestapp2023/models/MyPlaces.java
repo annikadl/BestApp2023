@@ -16,9 +16,7 @@ public class MyPlaces {
     private String Name;
     private String Type;
     private String Address;
-
     private int Open;
-
     private int Close;
 
     //Costruttore della classe
