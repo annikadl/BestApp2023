@@ -60,14 +60,25 @@ public class MainActivity extends AppCompatActivity{
         // fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-        ///////////////////// BOTTONI /////////////////////////////////////
+        //////////////////////////// DICHIARAZIONE BOTTONI ////////////////////////////////////
+        ImageButton profile = findViewById(R.id.profile);
+        ImageButton home = findViewById(R.id.home);
+        ImageButton invitefriend = findViewById(R.id.invitefriends);
+        ImageButton back = findViewById(R.id.back);
+
+
+        // inizialmente bottone back non visibile
+        back.setVisibility(View.GONE);
+
+        ////////////////////////////////// LOGICA BOTTONI /////////////////////////////////////
 
         // - Bottone profile
-       ImageButton profile = findViewById(R.id.profile);
-
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // bottone back visibile
+                back.setVisibility(View.VISIBLE);
+
                 Fragment FragmentTest = fragmentManager.findFragmentByTag("ProfileFragment");
                 FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
 
@@ -77,7 +88,6 @@ public class MainActivity extends AppCompatActivity{
                 // ho usato un booleano perchè la auth.isAuthenticated direttamente nell'if
                 // della transizione non funzionava
                 if(auth.isAuthenticated()){
-                    Log.d("Auth", "Sono qui");
                     logged = true;
                 }
 
@@ -98,11 +108,13 @@ public class MainActivity extends AppCompatActivity{
 
 
         // - Bottone home
-        ImageButton home = findViewById(R.id.home);
-
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+               // bottone back non visibile
+               back.setVisibility(View.GONE);
+
                Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
                if (FragmentTest == null)
                {
@@ -111,17 +123,19 @@ public class MainActivity extends AppCompatActivity{
                 fragmentTransaction.replace(R.id.container_login, new HomeFragment(),"HomeFragment");
                 //fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-            }
+                }
             }
         });
 
 
         // - Bottone invita amici
-        ImageButton invitefriend = findViewById(R.id.invitefriends);
 
         invitefriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // bottone back visibile
+                back.setVisibility(View.VISIBLE);
+
                 Fragment FragmentTest = fragmentManager.findFragmentByTag("InviteFriendsFragment");
 
                 if(FragmentTest == null)
@@ -135,12 +149,31 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        // TODO: bottone cerca, che però è nella home. Dove va la logica?
+        // - Bottone back
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // bottone back non visibile sulla home
+                back.setVisibility(View.GONE);
+
+                Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
+
+                if (FragmentTest == null)
+                {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.replace(R.id.container_login, new HomeFragment(),"HomeFragment");
+                    //fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
+            }
+        });
 
     }
 
 
-
+    /////////////////////////////////// LOGICA LOGIN E SIGN UP ////////////////////////////////////////
     // Quello che avevo nella Enter Activity
     public void renderFragment(boolean isLogin) {
         Fragment fragment = null;
@@ -174,7 +207,3 @@ public class MainActivity extends AppCompatActivity{
     }
 
 }
-
-
-// TODO: potrebbe essere necessario spostare la logica di accesso sul main
-// perché quando entro nella schermata di accesso

@@ -27,8 +27,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
-
-    //Funzione per andare in una nuova acrivity
+    //Funzione per andare in una nuova activity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
         this.startActivity(intent);

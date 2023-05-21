@@ -19,6 +19,8 @@ public class ProfileActivity extends Activity {
     ImageButton invitefriend;
     Button signout;
 
+    // TODO: togliere Profile Activity
+
     FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
 
     private void goToActivity(Class<?> activity) {
