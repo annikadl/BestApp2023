@@ -14,6 +14,7 @@ import com.example.bestapp2023.models.MyPlaces;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -28,14 +29,24 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-        //Prendo reference al nostro database
+          DatabaseQuery("City","Genova");
+
+    }
+
+    //POSSO FARE QUERY INNESTATE DEL TIPO
+    //            .orderByChild("City")
+    //            .equalTo(city)
+    //            .orderByChild("Type")
+    //            .equalTo(placeType);
+    public void DatabaseQuery (String Category , String Intype)
+    {
+        //Prendo riferimento al database
         DatabaseReference ref = FirebaseWrapper.RTDatabase.getDb();
+        //Esequo query di interesse
+        Query query = ref.orderByChild(Category).equalTo(Intype);
 
-        //TODO:AL MOMENTO PRENDO TUTTO IL DB SENZA NESSUN FILTRO
-
-        MyPlaces.Collection PlacesCollection  = new MyPlaces.Collection<>(PlacesList);
-
-        ref.addValueEventListener(new ValueEventListener() {
+        //Funzione per recuperare i dati dal DB
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 PlacesList.clear(); // Pulisci la lista prima di aggiungere nuovi elementi
@@ -54,22 +65,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 recyclerView.setAdapter(new PlaceAdapter((MyPlaces[]) PlacesCollection.places.toArray(new MyPlaces[0])));
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
-
-
-
-
-       /* RecyclerView recyclerView = this.findViewById(R.id.recyclerView);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new PlaceAdapter((MyPlaces[]) PlacesCollection.places.toArray(new MyPlaces[PlacesCollection.places.size()])));*/
 
     }
 }
