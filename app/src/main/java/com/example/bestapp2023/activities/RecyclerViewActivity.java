@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.models.FirebaseWrapper;
@@ -24,6 +27,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
+    //Funzione per andare in una nuova acrivity
+    private void goToActivity(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        this.startActivity(intent);
+        this.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +41,19 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         //RICEVO DAL HOME FRAGMENT IL BUCKET CONTENETE IL TIPO DA SCEGLIERE
         String BucketStringtype = getIntent().getStringExtra("Type");
+        //String BucketStringcity = getIntent().getStringExtra("City");
         //CHIAMO LA FUNZIONE
         DatabaseQuery("Type",BucketStringtype);
+
+        //Listener per il pulsante della barra superiore che riporta alla home
+        ImageButton back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RecyclerViewActivity.this.goToActivity(MainActivity.class);
+            }
+        });
 
     }
 

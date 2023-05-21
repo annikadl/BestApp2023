@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -29,6 +31,7 @@ import java.lang.reflect.Type;
 public class HomeFragment extends LogFragment {
 
     String Type;
+    String City;
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -54,6 +57,17 @@ public class HomeFragment extends LogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View externalView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //Spinner per la scelta della città
+
+        Spinner citta_menu = externalView.findViewById(R.id.citta_menu);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.citta, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        citta_menu.setAdapter(adapter);
 
         //INIZIALIZZO TUTTI I REFIREMNTI AGLI OGGETTI GRAFICI PRESENTI NEL HOME FRAGMENT, DA NOTARE
         //CHE VENGONO TUTTI ATTACCATI AL EXTERNALVIEW , OGGETTOCHE VIENE CHIAMATO PER LA GRAFICA
@@ -124,8 +138,25 @@ public class HomeFragment extends LogFragment {
                 Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
                 //PASSO COME BUCKET LA FUNZIONE TYPE DA PASSARE DA METTERE NELLA QUERY
                 intent.putExtra("Type",Type);
+                //intent.putExtra("City",City);
                 startActivity(intent);
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
+            }
+        });
+
+        //Metodo per passare il nome della città scelta nello Spinner come stringa
+        citta_menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (parent.getId() == R.id.citta_menu) {
+                    City = parent.getSelectedItem().toString();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
