@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity{
     androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
 
+
+
     //Funzione per andare in una nuova acrivity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
@@ -96,9 +98,20 @@ public class MainActivity extends AppCompatActivity{
                 // transizione tra login/registrazione e profilo avviene correttamente
                 if (FragmentTest == null && logged)
                   {
+                      //ASSEGNO I VALORI ALLA LISTA DA PASSARE COME BUNDLE
+
+                      //CREO IL BUNDLE DA PASSARE AL FRAGMENT
+                      Bundle UserNameEmailBundle = new Bundle();
+
+
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setReorderingAllowed(true);
-                    fragmentTransaction.replace(R.id.container_login, new ProfileFragment(),"ProfileFragment");
+                    // INIZIALIZZO IL FRAGMENT
+                    Fragment ProfileFragment = new ProfileFragment();
+                    // PASSO COME ARGOMENTI DEL FRAGMENT IL BUCKET
+                    ProfileFragment.setArguments(UserNameEmailBundle);
+                    // FACCIO REMOVE ED ADD NELLO STACK DEL PROIFLE FRAGMENT CON TAG ASSOCIATO
+                    fragmentTransaction.replace(R.id.container_login, ProfileFragment,"ProfileFragment");
                     fragmentTransaction.commit();
                  } else if (FragmentTest == null){
                     renderFragment(true);

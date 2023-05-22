@@ -36,41 +36,48 @@ public class ProfileFragment extends LogFragment {
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // RECUPERO I DATI PASSATI COME BUNDLE
+        String[] IncData = getArguments().getStringArray("MailUser");
+
+        // CERCO IL RIFERIMENTO ASSOCIATO AL OGGETTO UI USER E EMAIL
+
+        TextView Email = (TextView) externalView.findViewById(R.id.username_text);
+
+        TextView User = (TextView) externalView.findViewById(R.id.fullname_text);
+
+        // SETTO IL TESTO DI ENTRAMBI I CAMPI
+
+        Email.setText(GetEmail());
+        User.setText(GetUser());
+
         return externalView;
     }
 
-    //Prendi la stringa per il nome
+String GetUser() {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    /*
-        if (user != null) {
+    if (user != null) {
         String userFullName = user.getDisplayName();
-        TextView fullname_text = getView().findViewById(R.id.fullname_text);
-        fullname_text.setText(userFullName);
+
+        return userFullName;
+
     } else {
         // No user is signed in
+        return null;
     }
 
-    //Prendi la stringa per l'user
-    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+}
+
+String GetEmail(){
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    if (user != null) {
         String userEmail = user.getEmail();
-        TextView username_text = getView().findViewById(R.id.username_text);
-        username_text.setText(userEmail);
+
+        return userEmail;
+
     } else {
         // No user is signed in
+        return null;
     }
-
-    //Gestione del signout dell'utente
-    Button signout = getView().findViewById(R.id.signout);
-
-        signout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            auth.signOut();
-        }
-    });
-
-     */
-
+}
 
 }
