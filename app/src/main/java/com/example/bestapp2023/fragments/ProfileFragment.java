@@ -36,8 +36,8 @@ public class ProfileFragment extends LogFragment {
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // RECUPERO I DATI PASSATI COME BUNDLE
-        String[] IncData = getArguments().getStringArray("MailUser");
+        // RECUPERO I DATI PASSATI COME BUNDLE, ALLA FINE NON UTILIZZATO LO TENGO PER IL FUTURO
+       // String[] IncData = getArguments().getStringArray("MailUser");
 
         // CERCO IL RIFERIMENTO ASSOCIATO AL OGGETTO UI USER E EMAIL
 
