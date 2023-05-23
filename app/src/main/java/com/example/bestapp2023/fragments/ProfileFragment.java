@@ -68,12 +68,20 @@ public class ProfileFragment extends LogFragment {
 
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
-                // Creare un'istanza del LoginFragment
+                /*// Creare un'istanza del LoginFragment
                 LoginFragment loginFragment = new LoginFragment();
 
                 // Eseguire una transazione di fragment e sostituire il fragment corrente con il LoginFragment
                 fragmentManager.beginTransaction()
                         .replace(R.id.container_login, loginFragment)
+                        .commit();*/
+
+                //Creare un'istanza dell'HomeFragment
+                HomeFragment homeFragment = new HomeFragment();
+
+                //Eseguire una transazione di fragment e sostituire il fragment corrente con l'HomeFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container_login, homeFragment)
                         .commit();
             }
         });

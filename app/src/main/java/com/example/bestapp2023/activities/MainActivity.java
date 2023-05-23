@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity{
                 back.setVisibility(View.VISIBLE);
 
                 Fragment FragmentTest = fragmentManager.findFragmentByTag("ProfileFragment");
+                Fragment LoginFragment = fragmentManager.findFragmentByTag("LoginFragment");
                 FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
 
                 boolean logged = false;
@@ -109,10 +110,11 @@ public class MainActivity extends AppCompatActivity{
                     Fragment ProfileFragment = new ProfileFragment();
                     // PASSO COME ARGOMENTI DEL FRAGMENT IL BUCKET
                     ProfileFragment.setArguments(UserNameEmailBundle);
-                    // FACCIO REMOVE ED ADD NELLO STACK DEL PROIFLE FRAGMENT CON TAG ASSOCIATO
+                    // FACCIO REMOVE ED ADD NELLO STACK DEL PROFILE FRAGMENT CON TAG ASSOCIATO
                     fragmentTransaction.replace(R.id.container_login, ProfileFragment,"ProfileFragment");
                     fragmentTransaction.commit();
-                 } else if (FragmentTest == null){
+                 } else if (FragmentTest == null)
+                    {
                     renderFragment(true);
                }
             }
