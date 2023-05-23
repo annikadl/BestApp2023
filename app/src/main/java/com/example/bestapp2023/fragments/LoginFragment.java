@@ -101,10 +101,14 @@ public class LoginFragment extends LogFragment {
                             email.getText().toString(),
                             password.getText().toString(),
                             FirebaseWrapper.Callback
+                                    /* TODO: ogni tanto crasha qua se mi sloggo e mi riloggo subito
+                                    perché requireActivity() lancia eccezione visto che non sono
+                                    associata a nessuna activity in questo momento.
+                                     */
                                     .newInstance(LoginFragment.this.requireActivity(),
                                             LoginFragment.this.callbackName,
                                             LoginFragment.this.callbackPrms)
-                    );
+                            );
 
                     /*Toast
                             .makeText(LoginFragment.this.requireActivity(), "Invalid inputs", Toast.LENGTH_LONG)

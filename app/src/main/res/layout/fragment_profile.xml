@@ -41,7 +41,8 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerVertical="true"
-                        android:background="@color/white">
+                        android:background="@color/white"
+                        android:src="@drawable/profile">
 
                     </ImageView>
 

@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity{
     androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
 
-
-
     //Funzione per andare in una nuova acrivity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
@@ -105,7 +103,6 @@ public class MainActivity extends AppCompatActivity{
                       //CREO IL BUNDLE DA PASSARE AL FRAGMENT
                       Bundle UserNameEmailBundle = new Bundle();
 
-
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setReorderingAllowed(true);
                     // INIZIALIZZO IL FRAGMENT
@@ -120,8 +117,6 @@ public class MainActivity extends AppCompatActivity{
                }
             }
         });
-
-
 
 
         // - Bottone home
