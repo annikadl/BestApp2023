@@ -2,6 +2,7 @@ package com.example.bestapp2023.fragments;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.models.FirebaseWrapper;
@@ -36,48 +38,34 @@ public class ProfileFragment extends LogFragment {
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // RECUPERO I DATI PASSATI COME BUNDLE, ALLA FINE NON UTILIZZATO LO TENGO PER IL FUTURO
-       // String[] IncData = getArguments().getStringArray("MailUser");
+        FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
 
-        // CERCO IL RIFERIMENTO ASSOCIATO AL OGGETTO UI USER E EMAIL
+        //Gestione del signout dell'utente
+       Button signout = externalView.findViewById(R.id.signout);
 
-        TextView Email = (TextView) externalView.findViewById(R.id.username_text);
+        Log.d("Auth", "sono qui");
 
-        TextView User = (TextView) externalView.findViewById(R.id.fullname_text);
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View externalView) {
+                auth.signOut();
 
-        // SETTO IL TESTO DI ENTRAMBI I CAMPI
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
-        Email.setText(GetEmail());
-        User.setText(GetUser());
+                // Creare un'istanza del LoginFragment
+                LoginFragment loginFragment = new LoginFragment();
+
+                // Eseguire una transazione di fragment e sostituire il fragment corrente con il LoginFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container_login, loginFragment)
+                        .commit();
+            }
+        });
 
         return externalView;
     }
 
-String GetUser() {
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    if (user != null) {
-        String userFullName = user.getDisplayName();
 
-        return userFullName;
 
-    } else {
-        // No user is signed in
-        return null;
-    }
-
-}
-
-String GetEmail(){
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    if (user != null) {
-        String userEmail = user.getEmail();
-
-        return userEmail;
-
-    } else {
-        // No user is signed in
-        return null;
-    }
-}
 
 }

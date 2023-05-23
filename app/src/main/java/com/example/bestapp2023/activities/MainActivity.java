@@ -30,6 +30,8 @@ import com.example.bestapp2023.fragments.RestaurantFragment;
 import com.example.bestapp2023.fragments.SignupFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.MyPlaces;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -118,6 +120,8 @@ public class MainActivity extends AppCompatActivity{
                }
             }
         });
+
+
 
 
         // - Bottone home
