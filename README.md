@@ -26,3 +26,7 @@ Specifiche completate:
 - Layout dell'applicazione -> circa, mancano un menù a tendina e qualche activity in più
 
 - Richiesta di almeno un permesso “restricted” [2 pt]
+
+Problemi 
+
+- Creazione di n contatti a seconda del numero di soical associati ad esso 
