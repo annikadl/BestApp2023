@@ -33,7 +33,7 @@ public class InviteFriendsFragment extends LogFragment implements
     ImageButton profile;
     ImageButton invitefriend;
 
-    // Define global mutable variables
+    //VARIABILI GLOBALI
     ListView contactsList;
     long contactId;
     String contactKey;
@@ -43,6 +43,7 @@ public class InviteFriendsFragment extends LogFragment implements
     private static final int CONTACT_ID_INDEX = 0;
     private static final int CONTACT_KEY_INDEX = 1;
 
+    //DEFINISCO LE QUERY DA PASSARE AL CURSORE
     @SuppressLint("InlinedApi")
     private static final String[] PROJECTION = {
             ContactsContract.CommonDataKinds.Phone._ID,
@@ -78,7 +79,7 @@ public class InviteFriendsFragment extends LogFragment implements
         contactsList = externalView.findViewById(android.R.id.list);
 
 
-        // Perform a query to retrieve the contacts
+        //QUERY PER PRENDERE I CONTATTI
         CursorLoader cursorLoader = new CursorLoader(
                 getActivity(),
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -88,9 +89,10 @@ public class InviteFriendsFragment extends LogFragment implements
                 ContactsContract.Contacts.DISPLAY_NAME + " ASC"
         );
 
+        //EFFETTUO QUERY IN MANIERA ASINCRONA
         Cursor cursor = cursorLoader.loadInBackground();
 
-        // Create a cursor adapter with the retrieved contacts cursor
+        //CREO UN ADAPTER DEL CURSORE PER INSERIRE I DATI NELLA LIST VIEW
         cursorAdapter = new SimpleCursorAdapter(
                 getActivity(),
                 R.layout.contacts_list_item,
@@ -100,9 +102,8 @@ public class InviteFriendsFragment extends LogFragment implements
                 0
         );
 
-        // Sets the adapter for the ListView
+        // ASSEGNO I VALORI PRESI DAL CURSORE ALLA LISTA
         contactsList.setAdapter(cursorAdapter);
-        // Set the item click listener to be the current fragment
         contactsList.setOnItemClickListener(this);
 
         return externalView;
