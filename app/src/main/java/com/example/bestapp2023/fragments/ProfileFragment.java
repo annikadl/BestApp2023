@@ -1,5 +1,7 @@
 package com.example.bestapp2023.fragments;
 
+import static java.util.logging.Logger.global;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 // l'ho messo che estende LogFragment così abbiamo già una serie di funzioni generiche
 // per la gestione dei fragment
+
 public class ProfileFragment extends LogFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
@@ -93,7 +96,6 @@ public class ProfileFragment extends LogFragment {
             @Override
             public void onClick(View externalView) {
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-
                 ReservationFragment reservationFragment = new ReservationFragment();
 
                 //Eseguire una transazione di fragment e sostituire il fragment corrente con l'HomeFragment

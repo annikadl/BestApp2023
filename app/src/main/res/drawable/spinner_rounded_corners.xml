@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/arancione2"/> <!-- Colore di sfondo del tuo Spinner -->
+    <corners android:radius="20dp"/> <!-- Imposta il raggio degli angoli arrotondati -->
+</shape>
