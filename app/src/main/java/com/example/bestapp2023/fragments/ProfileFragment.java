@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.models.FirebaseWrapper;
+import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -57,7 +58,7 @@ public class ProfileFragment extends LogFragment {
         FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
 
         //Gestione del signout dell'utente
-       Button signout = externalView.findViewById(R.id.signout);
+        Button signout = externalView.findViewById(R.id.signout);
 
         Log.d("Auth", "sono qui");
 
@@ -82,6 +83,22 @@ public class ProfileFragment extends LogFragment {
                 //Eseguire una transazione di fragment e sostituire il fragment corrente con l'HomeFragment
                 fragmentManager.beginTransaction()
                         .replace(R.id.container_login, homeFragment)
+                        .commit();
+            }
+        });
+
+        Button prenotazioni = externalView.findViewById(R.id.prenotazioni);
+
+        prenotazioni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View externalView) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+                ReservationFragment reservationFragment = new ReservationFragment();
+
+                //Eseguire una transazione di fragment e sostituire il fragment corrente con l'HomeFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container_login, reservationFragment)
                         .commit();
             }
         });
