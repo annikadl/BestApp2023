@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ import com.example.bestapp2023.fragments.InviteFriendsFragment;
 import com.example.bestapp2023.fragments.LogFragment;
 import com.example.bestapp2023.fragments.LoginFragment;
 import com.example.bestapp2023.fragments.ProfileFragment;
+import com.example.bestapp2023.fragments.ReservationFragment;
 import com.example.bestapp2023.fragments.RestaurantFragment;
 import com.example.bestapp2023.fragments.SignupFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
@@ -38,6 +40,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -101,11 +105,11 @@ public class MainActivity extends AppCompatActivity{
 
                 // transizione tra login/registrazione e profilo avviene correttamente
                 if (FragmentTest == null && logged)
-                  {
-                      //ASSEGNO I VALORI ALLA LISTA DA PASSARE COME BUNDLE
+                {
+                    //ASSEGNO I VALORI ALLA LISTA DA PASSARE COME BUNDLE
 
-                      //CREO IL BUNDLE DA PASSARE AL FRAGMENT
-                      Bundle UserNameEmailBundle = new Bundle();
+                    //CREO IL BUNDLE DA PASSARE AL FRAGMENT
+                    Bundle UserNameEmailBundle = new Bundle();
 
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setReorderingAllowed(true);
@@ -116,10 +120,10 @@ public class MainActivity extends AppCompatActivity{
                     // FACCIO REMOVE ED ADD NELLO STACK DEL PROFILE FRAGMENT CON TAG ASSOCIATO
                     fragmentTransaction.replace(R.id.container_login, ProfileFragment,"ProfileFragment");
                     fragmentTransaction.commit();
-                 } else if (FragmentTest == null)
-                    {
+                } else if (FragmentTest == null)
+                {
                     renderFragment(true);
-               }
+                }
             }
         });
 
@@ -129,17 +133,17 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-               // bottone back non visibile
-               back.setVisibility(View.GONE);
+                // bottone back non visibile
+                back.setVisibility(View.GONE);
 
-               Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
-               if (FragmentTest == null)
-               {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.replace(R.id.container_login, new HomeFragment(),"HomeFragment");
-                //fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
+                if (FragmentTest == null)
+                {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.replace(R.id.container_login, new HomeFragment(),"HomeFragment");
+                    //fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             }
         });
@@ -157,11 +161,11 @@ public class MainActivity extends AppCompatActivity{
 
                 if(FragmentTest == null)
                 {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.replace(R.id.container_login, new InviteFriendsFragment(),"InviteFriendsFragment");
-                // fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.replace(R.id.container_login, new InviteFriendsFragment(),"InviteFriendsFragment");
+                    // fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             }
         });
@@ -170,19 +174,47 @@ public class MainActivity extends AppCompatActivity{
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // bottone back non visibile sulla home
-                back.setVisibility(View.GONE);
 
-                Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
+                FragmentManager fm =  getSupportFragmentManager();
+                Fragment currentFragment = fm.findFragmentById(R.id.container_login);
 
-                if (FragmentTest == null)
+                if(currentFragment instanceof ReservationFragment)
                 {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setReorderingAllowed(true);
-                    fragmentTransaction.replace(R.id.container_login, new HomeFragment(),"HomeFragment");
-                    //fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    Fragment FragmentTest = fragmentManager.findFragmentByTag("ProfileFragment");
 
+                    if (FragmentTest == null) {
+                        back.setVisibility(View.VISIBLE);
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.setReorderingAllowed(true);
+
+                        Bundle UserNameEmailBundle = new Bundle();
+
+                        // INIZIALIZZO IL FRAGMENT
+                        Fragment ProfileFragment = new ProfileFragment();
+                        // PASSO COME ARGOMENTI DEL FRAGMENT IL BUCKET
+                        ProfileFragment.setArguments(UserNameEmailBundle);
+                        // FACCIO REMOVE ED ADD NELLO STACK DEL PROFILE FRAGMENT CON TAG ASSOCIATO
+                        fragmentTransaction.replace(R.id.container_login, ProfileFragment,"ProfileFragment");
+                        fragmentTransaction.commit();
+                    }
+                }
+
+                else
+                {
+                    // bottone back non visibile sulla home
+                    back.setVisibility(View.GONE);
+
+                    Fragment FragmentTest = fragmentManager.findFragmentByTag("HomeFragment");
+
+                    if (FragmentTest == null) {
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.setReorderingAllowed(true);
+                        fragmentTransaction.replace(R.id.container_login, new HomeFragment(), "HomeFragment");
+                        //fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
+                    }
                 }
             }
         });
