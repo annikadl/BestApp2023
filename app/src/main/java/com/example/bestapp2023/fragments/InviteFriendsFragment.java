@@ -1,10 +1,12 @@
 package com.example.bestapp2023.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +119,18 @@ public class InviteFriendsFragment extends LogFragment implements
         contactId = cursor.getLong(CONTACT_ID_INDEX);
         contactKey = cursor.getString(CONTACT_KEY_INDEX);
         contactUri = ContactsContract.Contacts.getLookupUri(contactId, contactKey);
+
+        int phoneNumberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+        String phoneNumber = cursor.getString(phoneNumberIndex);
+
+        //QUANDO CLICCO INVIO UN MESSAGGIO AL CONTATTO DI INTERESSE
+
+        Uri sms_uri = Uri.parse("smsto:"+phoneNumber);
+        Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
+        sms_intent.putExtra("sms_body", "Vuoi andare fuori a cena? Scarica la nostra app e" +
+                "riceverai il 15% di sconto in tutti i nostri ristoranti!");
+        startActivity(sms_intent);
+
     }
 
     @NonNull
