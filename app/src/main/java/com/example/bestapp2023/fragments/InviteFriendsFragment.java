@@ -120,6 +120,8 @@ public class InviteFriendsFragment extends LogFragment implements
         contactKey = cursor.getString(CONTACT_KEY_INDEX);
         contactUri = ContactsContract.Contacts.getLookupUri(contactId, contactKey);
 
+        //PRENDO ID ASSOCIATO AL NUMERO E CONVERTO IN STIRNGA IL NUMERO
+
         int phoneNumberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
         String phoneNumber = cursor.getString(phoneNumberIndex);
 
