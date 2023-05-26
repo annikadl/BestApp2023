@@ -74,6 +74,7 @@
     <string name="tipo">Tipo</string>
     <string name="nome_ristorante">Nome</string>
     <string name="citt">Città</string>
+    <string name="nuova_prenotazione">Nuova prenotazione</string>
 
 
 </resources>

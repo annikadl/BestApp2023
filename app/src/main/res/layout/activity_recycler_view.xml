@@ -31,9 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/new_reservation"
-                android:text="Nuova prenotazione"
-                android:background="@color/arancione2"
-                android:gravity="right">
+                android:text="@string/nuova_prenotazione"
+                android:gravity="right"
+                android:background="@android:color/transparent">
 
             </Button>
 
