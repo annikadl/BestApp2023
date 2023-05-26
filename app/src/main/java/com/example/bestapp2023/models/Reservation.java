@@ -6,10 +6,13 @@ public class Reservation {
     String User_name;
     String Date;
 
-    public Reservation(String place_name, String user_name, String date) {
+    String People;
+
+    public Reservation(String place_name, String user_name, String date, String people) {
         this.Place_name = place_name;
         this.User_name = user_name;
         this.Date = date;
+        this.People = people;
     }
 
 
@@ -37,5 +40,8 @@ public class Reservation {
         this.Date = date;
     }
 
+    public String getPeople() { return People; }
+
+    public void setPeople(String people) { this.Date = people; }
 
 }
