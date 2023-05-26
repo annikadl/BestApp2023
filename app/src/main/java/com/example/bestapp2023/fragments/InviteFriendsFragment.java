@@ -129,7 +129,7 @@ public class InviteFriendsFragment extends LogFragment implements
 
         Uri sms_uri = Uri.parse("smsto:"+phoneNumber);
         Intent sms_intent = new Intent(Intent.ACTION_SENDTO, sms_uri);
-        sms_intent.putExtra("sms_body", "Vuoi andare fuori a cena? Scarica la nostra app e" +
+        sms_intent.putExtra("sms_body", "Vuoi andare fuori a cena? Scarica la nostra app e " +
                 "riceverai il 15% di sconto in tutti i nostri ristoranti!");
         startActivity(sms_intent);
 
