@@ -1,5 +1,7 @@
 package com.example.bestapp2023.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.activities.MainActivity;
+import com.example.bestapp2023.activities.RecyclerViewActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +57,17 @@ public class CreaReservationFragment extends LogFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         dd_orario.setAdapter(adapter);
+
+        //gestione freccia back
+        ImageButton back = externalView.findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
+                startActivity(intent);
+            }
+        });
 
         dd_orario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
