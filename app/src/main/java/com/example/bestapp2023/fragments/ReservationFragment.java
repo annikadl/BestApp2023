@@ -35,7 +35,7 @@ public class ReservationFragment extends LogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
-        View externalView = inflater.inflate(R.layout.fragment_creareservation, container, false);
+        View externalView = inflater.inflate(R.layout.fragment_reservation, container, false);
 
         //Reservation Pippino = new Reservation("Annika","Annikapizza","20");
        // FirebaseWrapper.RTDatabase.getDbReservation().setValue(Pippino);
