@@ -3,6 +3,7 @@ package com.example.bestapp2023.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,6 +29,7 @@ import com.example.bestapp2023.activities.RecyclerViewActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class HomeFragment extends LogFragment {
 
@@ -87,48 +90,113 @@ public class HomeFragment extends LogFragment {
 
         RelativeLayout piadina = (RelativeLayout) externalView.findViewById(R.id.rlPiadina);
 
-        //PER CIASCUNO DI ESSI SETTO UN LISTENER CHE VA A SCRIVERE IL TIPO IN UNA STRINGA DA PASSARE
+        //Dichiaro tutti i TextView che mi servono
+        TextView tvpizza = externalView.findViewById(R.id.tvPizza);
+        TextView tvsushi = externalView.findViewById(R.id.tvSushi);
+        TextView tvpiadina = externalView.findViewById(R.id.tvPiadina);
+        TextView tvhamburger = externalView.findViewById(R.id.tvHamburger);
+        TextView tvcinese = externalView.findViewById(R.id.tvCinese);
+        TextView tvdolci = externalView.findViewById(R.id.tvDolci);
+
+        //aggiungo tutti i TextView dichiarati in un ArrayList: mi servirà per la f.ne AllOthersToBlack
+        ArrayList<TextView> listatv = new ArrayList<TextView>();
+        listatv.add(tvpizza);
+        listatv.add(tvsushi);
+        listatv.add(tvpiadina);
+        listatv.add(tvhamburger);
+        listatv.add(tvcinese);
+        listatv.add(tvdolci);
+
+        //PER CIASCUN OGGETTO GRAFICO DI ESSI SETTO UN LISTENER CHE VA A SCRIVERE IL TIPO IN UNA STRINGA DA PASSARE
         //COME BUCKET ALLLA ACTIVITY DEL RECYCLER VIEW
 
         pizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Pizza";
+                if(Type != "Pizza") {
+                    Type = "Pizza";
+                    tvpizza.setTextColor(Color.RED);
+                    AllOthersToBlack(tvpizza, listatv);
+                }
+                else {
+                    Type = "";
+                    tvpizza.setTextColor(Color.BLACK);
+                }
             }
         });
 
         dolci.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Dolci";
+                if(Type != "Dolci") {
+                    Type = "Dolci";
+                    tvdolci.setTextColor(Color.RED);
+                    AllOthersToBlack(tvdolci, listatv);
+                }
+                else {
+                    Type = "";
+                    tvdolci.setTextColor(Color.BLACK);
+                }
             }
         });
 
         sushi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Sushi";
+                if(Type != "Sushi") {
+                    Type = "Sushi";
+                    tvsushi.setTextColor(Color.RED);
+                    AllOthersToBlack(tvsushi, listatv);
+                }
+                else {
+                    Type = "";
+                    tvsushi.setTextColor(Color.BLACK);
+                }
             }
         });
 
         cinese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Cinese";
+                if(Type != "Cinese") {
+                    Type = "Cinese";
+                    tvcinese.setTextColor(Color.RED);
+                    AllOthersToBlack(tvcinese, listatv);
+                }
+                else {
+                    Type = "";
+                    tvcinese.setTextColor(Color.BLACK);
+                }
             }
         });
 
         hamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Hamburger";
+                if(Type != "Hamburger") {
+                    Type = "Hamburger";
+                    tvhamburger.setTextColor(Color.RED);
+                    AllOthersToBlack(tvhamburger, listatv);
+                }
+                else {
+                    Type = "";
+                    tvhamburger.setTextColor(Color.BLACK);
+                }
             }
         });
 
         piadina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Piadina";
+                if(Type != "Piadina") {
+                    Type = "Piadina";
+                    tvpiadina.setTextColor(Color.RED);
+                    AllOthersToBlack(tvpiadina, listatv);
+                }
+                else {
+                    Type = "";
+                    tvpiadina.setTextColor(Color.BLACK);
+                }
             }
         });
 
@@ -168,6 +236,14 @@ public class HomeFragment extends LogFragment {
         return externalView;
     }
 
+    public void AllOthersToBlack(TextView selezione, ArrayList<TextView> listatv) {
+        for (int i = 0; i < listatv.size(); i++) {
+            if(selezione != listatv.get(i)) {
+                listatv.get(i).setTextColor(Color.BLACK);
+            }
+
+        }
+    }
 
 
 }
