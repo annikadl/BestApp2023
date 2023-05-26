@@ -98,7 +98,7 @@ public class HomeFragment extends LogFragment {
         TextView tvcinese = externalView.findViewById(R.id.tvCinese);
         TextView tvdolci = externalView.findViewById(R.id.tvDolci);
 
-        //aggiungo tutti i TextView dichiarati in un ArrayList: mi servirà per la f.ne AllOthersToBlack
+        //aggiungo tutti i TextView dichiarati in un ArrayList: mi servirà per la f.ne AllOthersToDefault
         ArrayList<TextView> listatv = new ArrayList<TextView>();
         listatv.add(tvpizza);
         listatv.add(tvsushi);
@@ -115,12 +115,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Pizza") {
                     Type = "Pizza";
-                    tvpizza.setTextColor(Color.RED);
-                    AllOthersToBlack(tvpizza, listatv);
+                    SetHighlightedValues(tvpizza);
+                    AllOthersToDefault(tvpizza, listatv);
                 }
                 else {
                     Type = "";
-                    tvpizza.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvpizza);
                 }
             }
         });
@@ -130,12 +130,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Dolci") {
                     Type = "Dolci";
-                    tvdolci.setTextColor(Color.RED);
-                    AllOthersToBlack(tvdolci, listatv);
+                    SetHighlightedValues(tvdolci);
+                    AllOthersToDefault(tvdolci, listatv);
                 }
                 else {
                     Type = "";
-                    tvdolci.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvdolci);
                 }
             }
         });
@@ -145,12 +145,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Sushi") {
                     Type = "Sushi";
-                    tvsushi.setTextColor(Color.RED);
-                    AllOthersToBlack(tvsushi, listatv);
+                    SetHighlightedValues(tvsushi);
+                    AllOthersToDefault(tvsushi, listatv);
                 }
                 else {
                     Type = "";
-                    tvsushi.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvsushi);
                 }
             }
         });
@@ -160,12 +160,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Cinese") {
                     Type = "Cinese";
-                    tvcinese.setTextColor(Color.RED);
-                    AllOthersToBlack(tvcinese, listatv);
+                    SetHighlightedValues(tvcinese);
+                    AllOthersToDefault(tvcinese, listatv);
                 }
                 else {
                     Type = "";
-                    tvcinese.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvcinese);
                 }
             }
         });
@@ -175,12 +175,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Hamburger") {
                     Type = "Hamburger";
-                    tvhamburger.setTextColor(Color.RED);
-                    AllOthersToBlack(tvhamburger, listatv);
+                    SetHighlightedValues(tvhamburger);
+                    AllOthersToDefault(tvhamburger, listatv);
                 }
                 else {
                     Type = "";
-                    tvhamburger.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvhamburger);
                 }
             }
         });
@@ -190,12 +190,12 @@ public class HomeFragment extends LogFragment {
             public void onClick(View view) {
                 if(Type != "Piadina") {
                     Type = "Piadina";
-                    tvpiadina.setTextColor(Color.RED);
-                    AllOthersToBlack(tvpiadina, listatv);
+                    SetHighlightedValues(tvpiadina);
+                    AllOthersToDefault(tvpiadina, listatv);
                 }
                 else {
                     Type = "";
-                    tvpiadina.setTextColor(Color.BLACK);
+                    SetDefaultValues(tvpiadina);
                 }
             }
         });
@@ -236,13 +236,26 @@ public class HomeFragment extends LogFragment {
         return externalView;
     }
 
-    public void AllOthersToBlack(TextView selezione, ArrayList<TextView> listatv) {
+    //Funzione per deselezionare tutti gli altri oggetti quando uno viene premuto
+    public void AllOthersToDefault(TextView selezione, ArrayList<TextView> listatv) {
         for (int i = 0; i < listatv.size(); i++) {
             if(selezione != listatv.get(i)) {
-                listatv.get(i).setTextColor(Color.BLACK);
+                SetDefaultValues(listatv.get(i));
             }
 
         }
+    }
+
+    //Funzione per riportare il testo a nero e dimensione di default
+    public void SetDefaultValues(TextView selezione) {
+        selezione.setTextColor(Color.BLACK);
+        selezione.setTextSize(15);
+    }
+
+    //Funzione per evidenziare il testo, rendendolo rosso e più grande
+    public void SetHighlightedValues(TextView selezione) {
+        selezione.setTextColor(Color.RED);
+        selezione.setTextSize(20);
     }
 
 
