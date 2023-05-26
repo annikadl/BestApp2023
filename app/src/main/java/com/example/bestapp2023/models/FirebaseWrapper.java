@@ -163,6 +163,24 @@ public class FirebaseWrapper {
             return ref;
         }
 
+        //FUNZIONE PER PRENDERE IL RIFERIMENTO AL DB DELLE PRENOTAZIONI
+        public static DatabaseReference getDbReservation()
+        {
+            DatabaseReference ref =
+                    FirebaseDatabase
+                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
+                            .getReference("Reservation");
+
+            // Return only the events of the current user
+            String uid = new FirebaseWrapper.Auth().getUid();
+            if (uid == null) {
+                return null;
+            }
+
+            return ref.child(uid);
+
+        }
+
     /*public void writeDbData(MyEvent myEvent) {
         DatabaseReference ref = getDb();
         if (ref == null) {
