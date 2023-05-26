@@ -34,6 +34,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
+    ArrayList<String> Data;
+
     //Funzione per andare in una nuova activity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
@@ -64,29 +66,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
             }
         });
 
-
-        // - Bottone invita amici
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button new_reservation = findViewById(R.id.new_reservation);
-        new_reservation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // bottone back visibile
-                new_reservation.setVisibility(View.VISIBLE);
-
-                Fragment FragmentTest = fragmentManager.findFragmentByTag("CreaReservationFragment");
-
-                if(FragmentTest == null)
-                {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setReorderingAllowed(true);
-                    fragmentTransaction.replace(R.id.container_rview, new CreaReservationFragment(),"InviteFriendsFragment");
-                    // fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                }
-            }
-        });
+        // FUNZIONE CHE PRENDE LE LISTA FILTRATA E ESEGUE LA TRANSAZIONE SUL FRAGMENT PRENOTAZIONE QUANDO
+        //SI CLICCA IL BOTTONE
+        ReservationFragmentCommit("Type",BucketStringtype,BucketStringcity);
 
     }
+
+
 
     public void DatabaseQuery (String Category , String Intype, String InCity)
     {
@@ -128,4 +114,89 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
     }
+
+    public void  ReservationFragmentCommit(String Category, String Intype, String InCity)
+    {
+        //Prendo riferimento al database
+        DatabaseReference ref = FirebaseWrapper.RTDatabase.getDb();
+        //Esequo query di interesse
+        Query query = ref.orderByChild(Category).equalTo(Intype);
+        //ARRAY DI DATI DA RITORNARE
+        ArrayList<String> arrayList = new ArrayList<String >();
+
+        //Funzione per recuperare i dati dal DB
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    //ESEGUO IL CHECK SULLA VARIABILE DATA, SE IL CAMPO CITY E UGUALE A QUELLO PASSATO
+                    //INIZALIZZO OGGETTO DI CLASSE PLACES ASSOCIATO
+                    if (data.child("City").getValue(String.class).equals(InCity)) {
+                        MyPlaces Place = data.getValue(MyPlaces.class);
+                        System.out.println(Place.getName());
+                        arrayList.add(Place.getName());
+                        Log.d("Lista", "AGGIUNTO CORRETTAMENTE ELEMENTO ALLA LISTA");
+                    }
+
+                    //PASSO AD ESEGUIRE UNA PRENOTAZIONE
+
+                    @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button new_reservation = findViewById(R.id.new_reservation);
+                    new_reservation.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // bottone back visibile
+                            new_reservation.setVisibility(View.VISIBLE);
+
+                            Fragment FragmentTest = fragmentManager.findFragmentByTag("CreaReservationFragment");
+
+                            //INIZIALIZZO I DATI DA PASSARE
+
+                            Bundle data = new  Bundle();
+
+                            data.putStringArrayList("Data",arrayList);
+
+                            CreaReservationFragment creaReservationFragment = new CreaReservationFragment();
+
+                            creaReservationFragment.setArguments(data);
+
+                            if(FragmentTest == null)
+                            {
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.setReorderingAllowed(true);
+                                fragmentTransaction.replace(R.id.container_rview, creaReservationFragment,"CreaReservationFragment");
+
+                                // fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+                        }
+                    });
+
+
+
+                }
+
+
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+
+        });
+
+
+    }
+
+
+
 }

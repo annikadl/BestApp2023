@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InviteFriendsFragment"
+    tools:context=".fragments.ReservationFragment"
     >
 
     <RelativeLayout
@@ -17,7 +17,7 @@
         android:background="@color/arancione4"
         android:focusableInTouchMode="true"
         android:fitsSystemWindows="true"
-        tools:context=".fragments.InviteFriendsFragment" >
+        tools:context=".fragments.ReservationFragment" >
 
         <TextView
             android:id="@+id/textView"

@@ -1,6 +1,5 @@
 package com.example.bestapp2023.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,22 +26,39 @@ import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 
 public class CreaReservationFragment extends LogFragment {
 
     String orario;
     String persone;
 
+    String ristoranti;
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.initArguments();
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //PRENDO IL BUNDLE DI DATI PASSATO DALLA RECYCLERVIEW ACTIVITY
+
+        Bundle bundle = this.getArguments();
+        ArrayList<String> myArrayList = null;
+        if (bundle != null) {
+            myArrayList = bundle.getStringArrayList("Data");
+        }
+
+
+
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_creareservation, container, false);
@@ -57,17 +73,6 @@ public class CreaReservationFragment extends LogFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         dd_orario.setAdapter(adapter);
-
-        //gestione freccia back
-        ImageButton back = externalView.findViewById(R.id.back);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
-                startActivity(intent);
-            }
-        });
 
         dd_orario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -110,6 +115,45 @@ public class CreaReservationFragment extends LogFragment {
 
             }
         });
+
+
+        //SPINNER RISTORANTI
+
+        Spinner dd_ristoranti = externalView.findViewById(R.id.dd_nome);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter_nome = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,myArrayList);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        dd_ristoranti.setAdapter(adapter_nome);
+
+        dd_ristoranti.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (parent.getId() == R.id.dd_nome) {
+                    ristoranti = parent.getSelectedItem().toString();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ImageButton back = externalView.findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+         }
+
+        });
+
+
         return externalView;
     }
 

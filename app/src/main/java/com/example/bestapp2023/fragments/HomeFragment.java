@@ -3,6 +3,7 @@ package com.example.bestapp2023.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -27,6 +29,7 @@ import com.example.bestapp2023.activities.RecyclerViewActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class HomeFragment extends LogFragment {
 
@@ -87,48 +90,113 @@ public class HomeFragment extends LogFragment {
 
         RelativeLayout piadina = (RelativeLayout) externalView.findViewById(R.id.rlPiadina);
 
-        //PER CIASCUNO DI ESSI SETTO UN LISTENER CHE VA A SCRIVERE IL TIPO IN UNA STRINGA DA PASSARE
+        //Dichiaro tutti i TextView che mi servono
+        TextView tvpizza = externalView.findViewById(R.id.tvPizza);
+        TextView tvsushi = externalView.findViewById(R.id.tvSushi);
+        TextView tvpiadina = externalView.findViewById(R.id.tvPiadina);
+        TextView tvhamburger = externalView.findViewById(R.id.tvHamburger);
+        TextView tvcinese = externalView.findViewById(R.id.tvCinese);
+        TextView tvdolci = externalView.findViewById(R.id.tvDolci);
+
+        //aggiungo tutti i TextView dichiarati in un ArrayList: mi servirà per la f.ne AllOthersToDefault
+        ArrayList<TextView> listatv = new ArrayList<TextView>();
+        listatv.add(tvpizza);
+        listatv.add(tvsushi);
+        listatv.add(tvpiadina);
+        listatv.add(tvhamburger);
+        listatv.add(tvcinese);
+        listatv.add(tvdolci);
+
+        //PER CIASCUN OGGETTO GRAFICO DI ESSI SETTO UN LISTENER CHE VA A SCRIVERE IL TIPO IN UNA STRINGA DA PASSARE
         //COME BUCKET ALLLA ACTIVITY DEL RECYCLER VIEW
 
         pizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Pizza";
+                if(Type != "Pizza") {
+                    Type = "Pizza";
+                    SetHighlightedValues(tvpizza);
+                    AllOthersToDefault(tvpizza, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvpizza);
+                }
             }
         });
 
         dolci.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Dolci";
+                if(Type != "Dolci") {
+                    Type = "Dolci";
+                    SetHighlightedValues(tvdolci);
+                    AllOthersToDefault(tvdolci, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvdolci);
+                }
             }
         });
 
         sushi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Sushi";
+                if(Type != "Sushi") {
+                    Type = "Sushi";
+                    SetHighlightedValues(tvsushi);
+                    AllOthersToDefault(tvsushi, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvsushi);
+                }
             }
         });
 
         cinese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Cinese";
+                if(Type != "Cinese") {
+                    Type = "Cinese";
+                    SetHighlightedValues(tvcinese);
+                    AllOthersToDefault(tvcinese, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvcinese);
+                }
             }
         });
 
         hamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Hamburger";
+                if(Type != "Hamburger") {
+                    Type = "Hamburger";
+                    SetHighlightedValues(tvhamburger);
+                    AllOthersToDefault(tvhamburger, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvhamburger);
+                }
             }
         });
 
         piadina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Type = "Piadina";
+                if(Type != "Piadina") {
+                    Type = "Piadina";
+                    SetHighlightedValues(tvpiadina);
+                    AllOthersToDefault(tvpiadina, listatv);
+                }
+                else {
+                    Type = "";
+                    SetDefaultValues(tvpiadina);
+                }
             }
         });
 
@@ -168,6 +236,27 @@ public class HomeFragment extends LogFragment {
         return externalView;
     }
 
+    //Funzione per deselezionare tutti gli altri oggetti quando uno viene premuto
+    public void AllOthersToDefault(TextView selezione, ArrayList<TextView> listatv) {
+        for (int i = 0; i < listatv.size(); i++) {
+            if(selezione != listatv.get(i)) {
+                SetDefaultValues(listatv.get(i));
+            }
+
+        }
+    }
+
+    //Funzione per riportare il testo a nero e dimensione di default
+    public void SetDefaultValues(TextView selezione) {
+        selezione.setTextColor(Color.BLACK);
+        selezione.setTextSize(15);
+    }
+
+    //Funzione per evidenziare il testo, rendendolo rosso e più grande
+    public void SetHighlightedValues(TextView selezione) {
+        selezione.setTextColor(Color.RED);
+        selezione.setTextSize(20);
+    }
 
 
 }
