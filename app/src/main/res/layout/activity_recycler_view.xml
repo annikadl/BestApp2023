@@ -18,7 +18,7 @@
 
             <ImageButton
                 android:id="@+id/back"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/arancione2"
                 android:gravity="left"
@@ -51,7 +51,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="57dp"
+                android:layout_marginTop="60dp"
                 android:layout_toStartOf="@id/recyclerView"
                 android:background="@color/arancione4" />
 
