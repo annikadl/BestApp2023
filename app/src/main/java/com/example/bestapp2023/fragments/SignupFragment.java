@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,12 @@ import com.example.bestapp2023.models.FirebaseWrapper;
 public class SignupFragment extends LogFragment {
 
     int password_length = 8;
+    String email_required = "Indirizzo email necessario";
+    String password_required = "Password necessaria";
+    String name_required = "Nome necessario";
+    String error_email = "Formato non valido";
+    String different_password = "Le password sono diverse";
+    String short_password = "Lunghezza almeno 8 caratteri";
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -68,47 +75,59 @@ public class SignupFragment extends LogFragment {
                 EditText password2 = externalView.findViewById(R.id.password2);
                 EditText name = externalView.findViewById(R.id.newname);
 
-                if (email.getText().toString().isEmpty() ||
-                        password.getText().toString().isEmpty() ||
-                        password2.getText().toString().isEmpty() || name.getText().toString().isEmpty()) {
-                    // TODO: Better error handling + remove this hardcoded strings
-                    email.setError("Email is required");
-                    password.setError("Password is required");
-                    password2.setError("Password is required");
-                    name.setError("Name is required");
-                    return;
-                }
-
-                if (!password.getText().toString().equals(password2.getText().toString())) {
-                    // TODO: Better error handling + remove this hardcoded strings
-                    Toast
-                            .makeText(SignupFragment.this.requireActivity(), "Le password sono diverse", Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                }
-
-                if (password.getText().length() < password_length) {
-                    // TODO: Better error handling + remove this hardcoded strings
-                    Toast
-                            .makeText(SignupFragment.this.requireActivity(), "Lunghezza almeno 8 caratteri", Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                }
-
                 // Perform SignIn
-                FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
-                auth.signUp(
-                        name.getText().toString(),
-                        email.getText().toString(),
-                        password.getText().toString(),
-                        FirebaseWrapper.Callback
-                                .newInstance(SignupFragment.this.requireActivity(),
-                                        SignupFragment.this.callbackName,
-                                        SignupFragment.this.callbackPrms)
-                );
+                if(Credential_Validation(email, password, password2, name)) {
+                    FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+                    auth.signUp(
+                            name.getText().toString(),
+                            email.getText().toString(),
+                            password.getText().toString(),
+                            FirebaseWrapper.Callback
+                                    .newInstance(SignupFragment.this.requireActivity(),
+                                            SignupFragment.this.callbackName,
+                                            SignupFragment.this.callbackPrms)
+                    );
+                }
             }
         });
 
         return externalView;
+    }
+
+    public boolean Credential_Validation(EditText email, EditText password, EditText password2, EditText name) {
+
+        //check di campi vuoti
+        if (email.getText().toString().isEmpty() ||
+                password.getText().toString().isEmpty() ||
+                password2.getText().toString().isEmpty() || name.getText().toString().isEmpty()) {
+            email.setError(email_required);
+            password.setError(password_required);
+            password2.setError(password_required);
+            name.setError(name_required);
+            return false;
+        }
+
+        //check formato email: deve esserci la chiocciola e il .com/.it/etc.
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            email.setError(error_email);
+            return false;
+        }
+
+        //check password uguali
+        if (!password.getText().toString().equals(password2.getText().toString())) {
+            Toast
+                    .makeText(SignupFragment.this.requireActivity(), different_password, Toast.LENGTH_LONG)
+                    .show();
+            return false;
+        }
+
+        //check lunghezza password
+        if (password.getText().length() < password_length) {
+            Toast
+                    .makeText(SignupFragment.this.requireActivity(), short_password, Toast.LENGTH_LONG)
+                    .show();
+            return false;
+        }
+        return true;
     }
 }
