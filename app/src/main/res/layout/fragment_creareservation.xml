@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InviteFriendsFragment"
+    >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/fragment_invitefriends"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/arancione4"
+        android:focusableInTouchMode="true"
+        android:fitsSystemWindows="true"
+        tools:context=".fragments.InviteFriendsFragment" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/arancione2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/arancione2"
+                android:gravity="left"
+                android:onClick="this"
+                android:src="@drawable/iconsleftarrow"
+                android:textSize="18sp"
+                tools:ignore="OnClick" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <!-- nome ristorante -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:gravity="center"
+                    >
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/dd_nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/spinner_rounded_corners" />
+            </LinearLayout>
+
+            <!-- nome orario -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Orario"
+                    android:gravity="center"
+                    >
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/dd_orario"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/spinner_rounded_corners" />
+            </LinearLayout>
+
+            <!-- numero persone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="N° persone"
+                    android:gravity="center"
+                    >
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/dd_persone"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/spinner_rounded_corners" />
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

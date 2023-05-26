@@ -2,16 +2,21 @@ package com.example.bestapp2023.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.fragments.CreaReservationFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.MyPlaces;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity {
+
+    androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
@@ -54,6 +61,28 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RecyclerViewActivity.this.goToActivity(MainActivity.class);
+            }
+        });
+
+
+        // - Bottone invita amici
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button new_reservation = findViewById(R.id.new_reservation);
+        new_reservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // bottone back visibile
+                new_reservation.setVisibility(View.VISIBLE);
+
+                Fragment FragmentTest = fragmentManager.findFragmentByTag("CreaReservationFragment");
+
+                if(FragmentTest == null)
+                {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setReorderingAllowed(true);
+                    fragmentTransaction.replace(R.id.container_rview, new CreaReservationFragment(),"InviteFriendsFragment");
+                    // fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
             }
         });
 

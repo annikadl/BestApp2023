@@ -7,12 +7,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/container_rview">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/top_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="@color/arancione2">
 
             <ImageButton
@@ -26,16 +27,35 @@
                 android:textSize="18sp"
                 tools:ignore="OnClick" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/new_reservation"
+                android:text="Nuova prenotazione"
+                android:background="@color/arancione2"
+                android:gravity="right">
+
+            </Button>
+
+
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.recyclerview.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="57dp"
-            android:layout_toStartOf="@id/recyclerView"
-            android:background="@color/arancione4"/>
+            android:layout_below="@+id/top_toolbar"
+            android:layout_marginTop="-60dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="57dp"
+                android:layout_toStartOf="@id/recyclerView"
+                android:background="@color/arancione4" />
+
+        </FrameLayout>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

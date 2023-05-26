@@ -30,13 +30,50 @@
     <string name="prenotazioni">Le mie prenotazioni</string>
     <string name="signout">Esci</string>
 
-    <!-- Dropdown menu -->
+    <!-- Dropdown menu città -->
     <string-array name="citta">
         <item>Genova</item>
         <item>Savona</item>
     </string-array>
+
+    <!-- NEW RESERVATION FRAGMENT -->
+    <!-- Dropdown menu nome ristorante -->
+    <string-array name="array_nome">
+        <item>Pino</item>
+    </string-array>
+
+    <!-- Dropdown menu orario prenotazione -->
+    <string-array name="array_orario">
+        <item>12</item>
+        <item>12.30</item>
+        <item>13</item>
+        <item>19.30</item>
+        <item>20.30</item>
+        <item>21</item>
+        <item>21.30</item>
+    </string-array>
+
+    <!-- Dropdown menu numero persone-->
+    <string-array name="array_persone">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
+    <!-- mi sa che ho fatto -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="orario_di_apertura">Orario di apertura</string>
+    <string name="orario_di_chiusura">Orario di chiusura</string>
+    <string name="via">Via</string>
+    <string name="tipo">Tipo</string>
+    <string name="nome_ristorante">Nome</string>
+    <string name="citt">Città</string>
 
 
 </resources>
