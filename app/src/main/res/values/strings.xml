@@ -102,6 +102,10 @@
     <string name="citt">Città</string>
     <string name="nuova_prenotazione">Nuova prenotazione</string>
     <string name="prenotazione_avvenuta_correttamente">Prenotazione avvenuta correttamente!</string>
+    <string name="ristorante">Ristorante:</string>
+    <string name="data">Data:</string>
+    <string name="orario">Orario:</string>
+    <string name="numero_persone">Numero persone:</string>
 
 
 </resources>
