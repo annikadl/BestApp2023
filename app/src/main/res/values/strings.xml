@@ -44,13 +44,29 @@
 
     <!-- Dropdown menu orario prenotazione -->
     <string-array name="array_orario">
-        <item>12</item>
-        <item>12.30</item>
-        <item>13</item>
-        <item>19.30</item>
-        <item>20.30</item>
-        <item>21</item>
-        <item>21.30</item>
+        <item>12:00</item>
+        <item>12:15</item>
+        <item>12:30</item>
+        <item>12:45</item>
+        <item>13:00</item>
+        <item>13:15</item>
+        <item>13:30</item>
+        <item>13:45</item>
+        <item>14:00</item>
+        <item>14:15</item>
+        <item>14:30</item>
+        <item>19:00</item>
+        <item>19:15</item>
+        <item>19:30</item>
+        <item>19:45</item>
+        <item>20:00</item>
+        <item>20:15</item>
+        <item>20:30</item>
+        <item>20:45</item>
+        <item>21:00</item>
+        <item>21:15</item>
+        <item>21:30</item>
+        <item>21:45</item>
     </string-array>
 
     <!-- Dropdown menu numero persone-->
