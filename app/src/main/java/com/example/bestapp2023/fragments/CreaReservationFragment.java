@@ -1,5 +1,6 @@
 package com.example.bestapp2023.fragments;
 
+import android.app.MediaRouteButton;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,6 +63,10 @@ public class CreaReservationFragment extends LogFragment {
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_creareservation, container, false);
+
+        // metto la txtview con il messaggio di avvenuta prenotazione invisibile finché non clicco su conferma prenotazione
+        TextView mex_conferma_prenotazione = externalView.findViewById(R.id.mex_conferma_prenotazione);
+        mex_conferma_prenotazione.setVisibility(View.GONE);
 
         // SPINNER ORARIO
 
@@ -177,8 +182,14 @@ public class CreaReservationFragment extends LogFragment {
         conferma_prenotazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // rendo visibile il messaggio di prenotazione avvenuta
+                mex_conferma_prenotazione.setVisibility(View.VISIBLE);
+
+                // bottone per prenotare cliccabile una volta sola, così non faccio prenotazioni uguali ricliccandolo
+                conferma_prenotazione.setClickable(false);
 
                 //SCRIVO NEL DB LA NUOVA PRENOTAZIONE
+                Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario);
                 FirebaseWrapper.RTDatabase.getDbReservation().setValue(reservation);
                 Log.d("ScrivoDb","MESSAGGIO CORRETTAMENTE INVIATO AL DB");
 

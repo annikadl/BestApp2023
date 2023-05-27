@@ -76,6 +76,16 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
 
     </string-array>
 
@@ -91,6 +101,7 @@
     <string name="nome_ristorante">Nome</string>
     <string name="citt">Città</string>
     <string name="nuova_prenotazione">Nuova prenotazione</string>
+    <string name="prenotazione_avvenuta_correttamente">Prenotazione avvenuta correttamente!</string>
 
 
 </resources>

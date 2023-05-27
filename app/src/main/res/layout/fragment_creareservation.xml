@@ -125,6 +125,24 @@
 
              </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="530dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/mex_conferma_prenotazione"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prenotazione_avvenuta_correttamente"
+                    android:textColor="@color/arancione1"
+                    android:textAlignment="center"
+                    >
+
+                </TextView>
+            </LinearLayout>
+
 
         </RelativeLayout>
 
