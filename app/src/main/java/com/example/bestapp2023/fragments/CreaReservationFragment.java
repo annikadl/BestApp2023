@@ -33,7 +33,6 @@ public class CreaReservationFragment extends LogFragment {
 
     String orario;
     String persone;
-
     String ristoranti;
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
