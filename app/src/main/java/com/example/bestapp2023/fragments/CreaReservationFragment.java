@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 public class CreaReservationFragment extends LogFragment {
 
-    String orario;
+    String orario ;
     String persone;
     String ristoranti;
 
@@ -78,9 +78,11 @@ public class CreaReservationFragment extends LogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getId() == R.id.dd_orario) {
+
                     orario = parent.getSelectedItem().toString();
-                }
+                Log.d("Spinner","SPINNER CLICCATO CORRETTAMENTE"+orario);
+
+
             }
 
             @Override
@@ -106,9 +108,10 @@ public class CreaReservationFragment extends LogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getId() == R.id.dd_persone) {
+
                     persone = parent.getSelectedItem().toString();
-                }
+                Log.d("Spinner","SPINNER CLICCATO CORRETTAMENTE"+persone);
+
             }
 
             @Override
@@ -134,11 +137,12 @@ public class CreaReservationFragment extends LogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (parent.getId() == R.id.dd_nome) {
+
                     ristoranti = parent.getSelectedItem().toString();
+                    Log.d("Spinner","SPINNER CLICCATO CORRETTAMENTE"+ristoranti);
                     // prendo valore selezionato per effettuare la scrittura su db.
                     selected_ristorante[0] = dd_ristoranti.getSelectedItem().toString();
-                }
+
             }
 
             @Override
@@ -158,13 +162,25 @@ public class CreaReservationFragment extends LogFragment {
 
         });
 
-       Button conferma_prenotazione = externalView.findViewById(R.id.conferma_prenotazione);
+        //PARTE PER GESTIRE NUOVA PRENOTAZIONE
+
+        String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+        //CREO NUOVO EVENTO A CUI PASSO I DATI SELEZIONATI NEGLI SPINNER
+
+
+
+        Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario);
+
+        Button conferma_prenotazione = externalView.findViewById(R.id.conferma_prenotazione);
 
         conferma_prenotazione.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Reservation Paperino = new Reservation(selected_ristorante[0], "annikella","12", "2");
-                FirebaseWrapper.RTDatabase.getDbReservation().setValue(Paperino);
+
+                //SCRIVO NEL DB LA NUOVA PRENOTAZIONE
+                FirebaseWrapper.RTDatabase.getDbReservation().setValue(reservation);
+                Log.d("ScrivoDb","MESSAGGIO CORRETTAMENTE INVIATO AL DB");
 
             }
 

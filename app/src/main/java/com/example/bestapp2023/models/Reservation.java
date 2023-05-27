@@ -6,15 +6,15 @@ public class Reservation {
     String User_name;
     String Date;
     String People;
-    double Time;
+    String Time;
     int ID;
 
-    public Reservation(String place_name, String user_name, String date, String people) {
+    public Reservation(String place_name, String user_name, String date, String people,String time) {
         this.Place_name = place_name;
         this.User_name = user_name;
         this.Date = date;
         this.People = people;
-        this.Time = 12.00;
+        this.Time = time;
         this.ID = 0;
     }
 
@@ -46,8 +46,8 @@ public class Reservation {
     public String getPeople() { return People; }
 
     public void setPeople(String people) { this.Date = people; }
-    public double getTime() { return Time; }
-    public void setTime(double time) {this.Time = time;}
+    public String getTime() { return Time; }
+    public void setTime(String time) {this.Time = time;}
 
     public int getID() {return ID; }
     public void setID(int id) { this.ID = id;}
