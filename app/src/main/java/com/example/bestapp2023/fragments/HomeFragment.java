@@ -36,6 +36,8 @@ public class HomeFragment extends LogFragment {
     String Type;
     String City;
 
+    int numristoranti = 6;
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,18 @@ public class HomeFragment extends LogFragment {
 
         RelativeLayout piadina = (RelativeLayout) externalView.findViewById(R.id.rlPiadina);
 
+        //aggiungo tutti i RelativeLayout in un array: mi servirà per l'inizializzazione dei listener
+        //ho usato un array anziché un arraylist perché l'arraylist dà problemi nel settare i listener in un loop
+        RelativeLayout[] listalayout = new RelativeLayout[numristoranti];
+        listalayout[0] = pizza;
+        listalayout[1] = sushi;
+        listalayout[2] = piadina;
+        listalayout[3] = hamburger;
+        listalayout[4] = cinese;
+        listalayout[5] = dolci;
+
         //Dichiaro tutti i TextView che mi servono
+        //IMPORTANTE: listalayout[] e l'arraylist listatv devono avere gli elementi nello stesso ordine
         TextView tvpizza = externalView.findViewById(R.id.tvPizza);
         TextView tvsushi = externalView.findViewById(R.id.tvSushi);
         TextView tvpiadina = externalView.findViewById(R.id.tvPiadina);
@@ -110,95 +123,36 @@ public class HomeFragment extends LogFragment {
         //PER CIASCUN OGGETTO GRAFICO DI ESSI SETTO UN LISTENER CHE VA A SCRIVERE IL TIPO IN UNA STRINGA DA PASSARE
         //COME BUCKET ALLLA ACTIVITY DEL RECYCLER VIEW
 
-        pizza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Pizza") {
-                    Type = "Pizza";
-                    SetHighlightedValues(tvpizza);
-                    AllOthersToDefault(tvpizza, listatv);
-                }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvpizza);
-                }
-            }
-        });
+        //inizializzo il ciclo in base alla lunghezza di listalayout, ovvero al numero di ristoranti che ho
+        for (int i = 0; i < listalayout.length; i++) {
+            //salvo i in una variabile interna al loop, altrimenti non posso usarla nell'Override
+            final int current = i;
 
-        dolci.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Dolci") {
-                    Type = "Dolci";
-                    SetHighlightedValues(tvdolci);
-                    AllOthersToDefault(tvdolci, listatv);
-                }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvdolci);
-                }
-            }
-        });
+            //setto il listener del layour correntre
+            listalayout[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //se Type è diverso dal testo associato al tipo cliccato, per esempio "Pizza"
+                    if (Type != listatv.get(current).getText().toString()) {
+                        //Type diventa quel tipo, per esempio Type = "Pizza"
+                        Type = listatv.get(current).getText().toString();
 
-        sushi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Sushi") {
-                    Type = "Sushi";
-                    SetHighlightedValues(tvsushi);
-                    AllOthersToDefault(tvsushi, listatv);
-                }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvsushi);
-                }
-            }
-        });
+                        //Evidenzio la selezione di quel layout
+                        SetHighlightedValues(listatv.get(current));
 
-        cinese.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Cinese") {
-                    Type = "Cinese";
-                    SetHighlightedValues(tvcinese);
-                    AllOthersToDefault(tvcinese, listatv);
-                }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvcinese);
-                }
-            }
-        });
+                        //Annullo qualsiasi altra eventuale selezione fatta prima, visto che posso passare un solo Type
+                        AllOthersToDefault(listatv.get(current), listatv);
+                    }
+                    else {
+                        //caso di secondo click, ovvero di deselezione del tipo: annullo la selezione mettendo Type vuoto
+                        Type = "";
 
-        hamburger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Hamburger") {
-                    Type = "Hamburger";
-                    SetHighlightedValues(tvhamburger);
-                    AllOthersToDefault(tvhamburger, listatv);
+                        //Riporto quel layout all'aspetto di default
+                        SetDefaultValues(listatv.get(current));
+                    }
                 }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvhamburger);
-                }
-            }
-        });
-
-        piadina.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Type != "Piadina") {
-                    Type = "Piadina";
-                    SetHighlightedValues(tvpiadina);
-                    AllOthersToDefault(tvpiadina, listatv);
-                }
-                else {
-                    Type = "";
-                    SetDefaultValues(tvpiadina);
-                }
-            }
-        });
+            });
+        }
 
         //Metodo per passare il nome della città scelta nello Spinner come stringa
         citta_menu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
