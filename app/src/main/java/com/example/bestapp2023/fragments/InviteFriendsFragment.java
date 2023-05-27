@@ -31,10 +31,6 @@ public class InviteFriendsFragment extends LogFragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
         AdapterView.OnItemClickListener {
 
-    ImageButton home;
-    ImageButton profile;
-    ImageButton invitefriend;
-
     //VARIABILI GLOBALI
     ListView contactsList;
     long contactId;

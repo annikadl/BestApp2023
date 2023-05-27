@@ -15,7 +15,8 @@ public class PermissionManager {
 
     // In questo codice si chiedono i permessi all'utente. Metto lo specifico permesso nell'array
     // e faccio il check su tutti
-    private final static String[] NEEDED_PERMISSIONS= {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_CONTACTS };
+    private final static String[] NEEDED_PERMISSIONS= {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_CONTACTS,
+            Manifest.permission.POST_NOTIFICATIONS };
     private final static String TAG = PermissionManager.class.getCanonicalName();
 
     private final Activity activity;

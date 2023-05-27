@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -100,6 +101,7 @@ public class CreaReservationFragment extends LogFragment {
         // Apply the adapter to the spinner
         dd_persone.setAdapter(adapter_persone);
 
+
         dd_persone.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -126,12 +128,16 @@ public class CreaReservationFragment extends LogFragment {
         // Apply the adapter to the spinner
         dd_ristoranti.setAdapter(adapter_nome);
 
+        // non so perché me lo ha fatto dichiarare così
+        final String[] selected_ristorante = new String[1];
         dd_ristoranti.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (parent.getId() == R.id.dd_nome) {
                     ristoranti = parent.getSelectedItem().toString();
+                    // prendo valore selezionato per effettuare la scrittura su db.
+                    selected_ristorante[0] = dd_ristoranti.getSelectedItem().toString();
                 }
             }
 
@@ -151,6 +157,20 @@ public class CreaReservationFragment extends LogFragment {
          }
 
         });
+
+       Button conferma_prenotazione = externalView.findViewById(R.id.conferma_prenotazione);
+
+        conferma_prenotazione.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Reservation Paperino = new Reservation(selected_ristorante[0], "annikella","12", "2");
+                FirebaseWrapper.RTDatabase.getDbReservation().setValue(Paperino);
+
+            }
+
+        });
+
+
 
 
         return externalView;

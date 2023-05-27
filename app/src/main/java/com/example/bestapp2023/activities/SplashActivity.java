@@ -82,9 +82,4 @@ public class SplashActivity extends AppCompatActivity {
         this.goToActivity(MainActivity.class);
     }
 
-
-
-
-
-
 }
