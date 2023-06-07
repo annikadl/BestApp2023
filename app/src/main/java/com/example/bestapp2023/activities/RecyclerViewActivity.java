@@ -14,9 +14,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.fragments.CreaReservationFragment;
+import com.example.bestapp2023.fragments.SignupFragment;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.MyPlaces;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +37,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     List<MyPlaces> PlacesList = new ArrayList<MyPlaces>();
 
     ArrayList<String> Data;
+    String not_logged = "Per prenotare devi loggarti o registrarti";
 
     //Funzione per andare in una nuova activity
     private void goToActivity(Class<?> activity) {
@@ -146,26 +149,41 @@ public class RecyclerViewActivity extends AppCompatActivity {
                             // bottone back visibile
                             new_reservation.setVisibility(View.VISIBLE);
 
-                            Fragment FragmentTest = fragmentManager.findFragmentByTag("CreaReservationFragment");
+                            //abilito il pulsante solo se sono loggato
 
-                            //INIZIALIZZO I DATI DA PASSARE
+                            FirebaseWrapper.Auth auth = new FirebaseWrapper.Auth();
+                            boolean logged = false;
+                            if(auth.isAuthenticated()){
+                                logged = true;
+                            }
 
-                            Bundle data = new  Bundle();
+                            if(!logged){
+                                Toast
+                                        .makeText(RecyclerViewActivity.this, not_logged, Toast.LENGTH_LONG)
+                                        .show();
+                            }
 
-                            data.putStringArrayList("Data",arrayList);
+                            else {
+                                Fragment FragmentTest = fragmentManager.findFragmentByTag("CreaReservationFragment");
 
-                            CreaReservationFragment creaReservationFragment = new CreaReservationFragment();
+                                //INIZIALIZZO I DATI DA PASSARE
 
-                            creaReservationFragment.setArguments(data);
+                                Bundle data = new Bundle();
 
-                            if(FragmentTest == null)
-                            {
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.setReorderingAllowed(true);
-                                fragmentTransaction.replace(R.id.container_rview, creaReservationFragment,"CreaReservationFragment");
+                                data.putStringArrayList("Data", arrayList);
 
-                                // fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
+                                CreaReservationFragment creaReservationFragment = new CreaReservationFragment();
+
+                                creaReservationFragment.setArguments(data);
+
+                                if (FragmentTest == null) {
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.setReorderingAllowed(true);
+                                    fragmentTransaction.replace(R.id.container_rview, creaReservationFragment, "CreaReservationFragment");
+
+                                    // fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
+                                }
                             }
                         }
                     });
