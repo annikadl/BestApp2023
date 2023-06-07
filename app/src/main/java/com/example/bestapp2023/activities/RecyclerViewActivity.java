@@ -72,8 +72,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     }
 
-
-
     public void DatabaseQuery (String Category , String Intype, String InCity)
     {
         //Prendo riferimento al database
@@ -175,14 +173,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
                 }
-
-
-
-
-
-
-
-
             }
 
             @Override

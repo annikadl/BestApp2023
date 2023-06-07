@@ -28,7 +28,10 @@ import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class CreaReservationFragment extends LogFragment {
@@ -137,7 +140,7 @@ public class CreaReservationFragment extends LogFragment {
         dd_ristoranti.setAdapter(adapter_nome);
 
         // non so perché me lo ha fatto dichiarare così
-        final String[] selected_ristorante = new String[1];
+        //final String[] selected_ristorante = new String[1];
         dd_ristoranti.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -146,7 +149,7 @@ public class CreaReservationFragment extends LogFragment {
                     ristoranti = parent.getSelectedItem().toString();
                     Log.d("Spinner","SPINNER CLICCATO CORRETTAMENTE"+ristoranti);
                     // prendo valore selezionato per effettuare la scrittura su db.
-                    selected_ristorante[0] = dd_ristoranti.getSelectedItem().toString();
+                    //selected_ristorante[0] = dd_ristoranti.getSelectedItem().toString();
 
             }
 
@@ -173,9 +176,9 @@ public class CreaReservationFragment extends LogFragment {
 
         //CREO NUOVO EVENTO A CUI PASSO I DATI SELEZIONATI NEGLI SPINNER
 
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-
-        Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario);
+        Reservation reservation = new Reservation(ristoranti,username,currentDate,persone,orario,0);
 
         Button conferma_prenotazione = externalView.findViewById(R.id.conferma_prenotazione);
 
@@ -189,7 +192,7 @@ public class CreaReservationFragment extends LogFragment {
                 conferma_prenotazione.setClickable(false);
 
                 //SCRIVO NEL DB LA NUOVA PRENOTAZIONE
-                Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario);
+                Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario,0);
                 FirebaseWrapper.RTDatabase.getDbReservation().setValue(reservation);
                 Log.d("ScrivoDb","MESSAGGIO CORRETTAMENTE INVIATO AL DB");
 

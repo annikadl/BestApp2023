@@ -181,6 +181,18 @@ public class FirebaseWrapper {
 
         }
 
+        public static DatabaseReference getDbReservationLettura()
+        {
+            DatabaseReference ref =
+                    FirebaseDatabase
+                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
+                            .getReference("Reservation");
+
+
+            return ref;
+
+        }
+
     /*public void writeDbData(MyEvent myEvent) {
         DatabaseReference ref = getDb();
         if (ref == null) {

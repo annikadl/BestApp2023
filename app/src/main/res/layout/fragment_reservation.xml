@@ -19,13 +19,21 @@
         android:fitsSystemWindows="true"
         tools:context=".fragments.ReservationFragment" >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ho prenotatooooo"
-            android:textColor="#000000"
-            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-60dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="57dp"
+                android:layout_toStartOf="@id/recyclerView"
+                android:background="@color/arancione4" />
+
+        </FrameLayout>
 
     </RelativeLayout>
 
