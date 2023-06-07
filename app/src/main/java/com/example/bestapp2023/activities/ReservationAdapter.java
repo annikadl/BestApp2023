@@ -86,7 +86,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         holder.getPlacenameid().setText(String.valueOf(this.reservations[position].getPlace_name()));
         //holder.getCityid().setText(String.valueOf(this.places[position].getCity()));
         holder.getDateid().setText(String.valueOf(this.reservations[position].getDate()));
-        holder.getPeopleid().setText(String.valueOf(this.reservations[position].getPeople()));
+        //holder.getPeopleid().setText(String.valueOf(this.reservations[position].getPeople()));
         holder.getTimeid().setText(String.valueOf(this.reservations[position].getTime()));
     }
 

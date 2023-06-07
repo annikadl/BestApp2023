@@ -106,6 +106,7 @@
     <string name="data">Data:</string>
     <string name="orario">Orario:</string>
     <string name="numero_persone">Numero persone:</string>
+    <string name="oggi">Oggi</string>
 
 
 </resources>
