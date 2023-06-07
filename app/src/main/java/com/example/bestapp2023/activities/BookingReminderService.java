@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.bestapp2023.R;
 import com.example.bestapp2023.models.Reservation;
+import com.example.bestapp2023.fragments.ReservationFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class BookingReminderService extends JobService {
         // Costruisci la notifica per il promemoria della prenotazione
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")
                 .setContentTitle("Promemoria prenotazione")
-                .setContentText("La tua prenotazione è programmata per il " + booking.getDate() + "alle " + booking.getTime())
+                .setContentText("La tua prenotazione è programmata per oggi alle " + booking.getTime())
                 // dialog alert di default di androdi
                 .setSmallIcon(android.R.drawable.ic_dialog_alert);
 

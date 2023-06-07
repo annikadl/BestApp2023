@@ -118,7 +118,6 @@ public class ReservationFragment extends LogFragment {
 
 
         // CODICE PER CHIAMARE WORKER CHE OGNI 10 MINUTI CONTROLLA SE C'è UNA PRENOTAZIONE
-        // TODO: prima implementare lettura da db
 
         /*
         // Crea un oggetto JobScheduler
@@ -126,16 +125,19 @@ public class ReservationFragment extends LogFragment {
 
         // Crea un oggetto per il lavoro
         ComponentName componentName = new ComponentName(this, BookingReminderService.class);
-J       obInfo jobInfo = new JobInfo.Builder(1, componentName)
+        JobInfo jobInfo = new JobInfo.Builder(1, componentName)
         .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
         .setPeriodic(60 * 60 * 1000) // Esegui ogni ora
         .build();
 
-// Avvia il lavoro
-jobScheduler.schedule(jobInfo);
+        // Avvia il lavoro
+        jobScheduler.schedule(jobInfo);
          */
 
         return externalView;
     }
 
+    public List<Reservation> getReservationList() {
+        return ReservationList;
+    }
 }
