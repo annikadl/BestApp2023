@@ -193,7 +193,7 @@ public class CreaReservationFragment extends LogFragment {
 
                 //SCRIVO NEL DB LA NUOVA PRENOTAZIONE
                 Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario,0);
-                FirebaseWrapper.RTDatabase.getDbReservation().setValue(reservation);
+                FirebaseWrapper.RTDatabase.getDbReservation().push().setValue(reservation);
                 Log.d("ScrivoDb","MESSAGGIO CORRETTAMENTE INVIATO AL DB");
 
             }
