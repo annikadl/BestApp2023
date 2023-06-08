@@ -6,19 +6,16 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -27,9 +24,6 @@ import com.example.bestapp2023.R;
 
 import android.provider.ContactsContract;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class InviteFriendsFragment extends LogFragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
@@ -48,23 +42,19 @@ public class InviteFriendsFragment extends LogFragment implements
     //DEFINISCO LE QUERY DA PASSARE AL CURSORE
     @SuppressLint("InlinedApi")
     private static final String[] PROJECTION = {
-            ContactsContract.CommonDataKinds.Phone._ID,
-            ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
-            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY,
-            ContactsContract.CommonDataKinds.Phone.NUMBER
+            ContactsContract.RawContacts._ID,
+            ContactsContract.RawContacts.ACCOUNT_TYPE,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.CommonDataKinds.Photo.CONTACT_ID
     };
 
-    @SuppressLint("InlinedApi")
-    private static final String SELECTION =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                    ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?" :
-                    ContactsContract.Contacts.DISPLAY_NAME + " LIKE ?";
+    String selectionFields =  ContactsContract.RawContacts.ACCOUNT_TYPE + " = ?";
+    String[] selectionArgs = new String[]{"com.whatsapp"};
 
-    private String searchString = "";
-    private String[] selectionArgs;
 
-    String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1" +
-            " AND " + ContactsContract.Contacts.IN_VISIBLE_GROUP + " =1";
+
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -89,34 +79,14 @@ public class InviteFriendsFragment extends LogFragment implements
                 getActivity(),
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 PROJECTION,
-                selection,
-                null,
-                ContactsContract.Contacts.DISPLAY_NAME + " ASC"
+                selectionFields,
+                selectionArgs,
+                ContactsContract.Contacts.DISPLAY_NAME
         );
 
         //EFFETTUO QUERY IN MANIERA ASINCRONA
         Cursor cursor = cursorLoader.loadInBackground();
 
-        //creo una hashmap per eliminare i duplicati
-        HashMap<Long, Contact> contacts = new HashMap<>();
-
-        while (cursor.moveToNext()) {
-            long id = cursor.getLong(0);
-            String name = cursor.getString(2);
-            String phone = cursor.getString(3);
-
-            Contact c = contacts.get(id);
-            if (c == null) {
-                // newly found contact, add to Map
-                c = new Contact();
-                c.name = name;
-                contacts.put(id, c);
-            }
-
-            // add phone to contact class
-            c.phones.add(phone);
-        }
-        //cursor.close();
 
         //CREO UN ADAPTER DEL CURSORE PER INSERIRE I DATI NELLA LIST VIEW
         cursorAdapter = new SimpleCursorAdapter(
@@ -162,15 +132,15 @@ public class InviteFriendsFragment extends LogFragment implements
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        selectionArgs = new String[]{"%" + searchString + "%"};
 
         return new CursorLoader(
                 getActivity(),
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 PROJECTION,
-                SELECTION,
+                selectionFields,
                 selectionArgs,
-                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY + " ASC"
+                ContactsContract.Contacts.DISPLAY_NAME
+
 
         );
     }
@@ -186,9 +156,5 @@ public class InviteFriendsFragment extends LogFragment implements
         cursorAdapter.swapCursor(null);
     }
 
-    private class Contact {
-        public String name;
-        // use can use a HashSet here to avoid duplicate phones per contact
-        public List<String> phones = new ArrayList<>();
-    }
+
 }

@@ -3,6 +3,7 @@ package com.example.bestapp2023.activities;
 import android.Manifest;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import androidx.core.app.ActivityCompat;
@@ -24,6 +25,10 @@ public class BookingReminderService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        //fai partire il servizio
+        Intent service = new Intent(getApplicationContext(), MainActivity.class);
+        getApplicationContext().startService(service);
+
         // Avvia il lavoro in background per inviare i promemoria delle prenotazioni
         sendBookingReminders();
 
