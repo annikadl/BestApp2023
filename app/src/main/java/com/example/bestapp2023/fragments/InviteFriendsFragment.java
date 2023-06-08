@@ -27,6 +27,10 @@ import com.example.bestapp2023.R;
 
 import android.provider.ContactsContract;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class InviteFriendsFragment extends LogFragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
         AdapterView.OnItemClickListener {
@@ -59,6 +63,9 @@ public class InviteFriendsFragment extends LogFragment implements
     private String searchString = "";
     private String[] selectionArgs;
 
+    String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1" +
+            " AND " + ContactsContract.Contacts.IN_VISIBLE_GROUP + " =1";
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,13 +89,34 @@ public class InviteFriendsFragment extends LogFragment implements
                 getActivity(),
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 PROJECTION,
-                null,
+                selection,
                 null,
                 ContactsContract.Contacts.DISPLAY_NAME + " ASC"
         );
 
         //EFFETTUO QUERY IN MANIERA ASINCRONA
         Cursor cursor = cursorLoader.loadInBackground();
+
+        //creo una hashmap per eliminare i duplicati
+        HashMap<Long, Contact> contacts = new HashMap<>();
+
+        while (cursor.moveToNext()) {
+            long id = cursor.getLong(0);
+            String name = cursor.getString(2);
+            String phone = cursor.getString(3);
+
+            Contact c = contacts.get(id);
+            if (c == null) {
+                // newly found contact, add to Map
+                c = new Contact();
+                c.name = name;
+                contacts.put(id, c);
+            }
+
+            // add phone to contact class
+            c.phones.add(phone);
+        }
+        //cursor.close();
 
         //CREO UN ADAPTER DEL CURSORE PER INSERIRE I DATI NELLA LIST VIEW
         cursorAdapter = new SimpleCursorAdapter(
@@ -149,11 +177,18 @@ public class InviteFriendsFragment extends LogFragment implements
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
         cursorAdapter.swapCursor(data);
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         cursorAdapter.swapCursor(null);
+    }
+
+    private class Contact {
+        public String name;
+        // use can use a HashSet here to avoid duplicate phones per contact
+        public List<String> phones = new ArrayList<>();
     }
 }
