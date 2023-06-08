@@ -76,24 +76,15 @@ public class ReservationFragment extends LogFragment {
         //FirebaseWrapper.RTDatabase.getDbReservation().setValue(Pippino);
 
         DatabaseReference ref = FirebaseWrapper.RTDatabase.getDbReservationLettura();
-        Query query = ref.orderByKey();
 
-        //query.addValueEventListener(new ValueEventListener() {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ReservationList.clear(); // Pulisci la lista prima di aggiungere nuovi elementi
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    //ESEGUO IL CHECK SULLA VARIABILE DATA, SE IL CAMPO CITY E UGUALE A QUELLO PASSATO
-                    //INIZALIZZO OGGETTO DI CLASSE PLACES ASSOCIATO
-                        //Reservation reservation = data.getValue(Reservation.class);
-                        //System.out.println(reservation.getPlace_name());
-                        //ReservationList.add(reservation);
-                    Log.d("UID", user.getUid());
-                    if(data.getKey().equals(user.getUid())) {
-                        ReservationList.add(data.getValue(Reservation.class));
-                        Log.d("Lista", "AGGIUNTO CORRETTAMENTE ELEMENTO ALLA LISTA");
-                    }
+                    ReservationList.add(data.getValue(Reservation.class));
+                    Log.d("Lista", "AGGIUNTO CORRETTAMENTE ELEMENTO ALLA LISTA");
+
                 }
 
                 Reservation.Collection ReservationCollection = new Reservation.Collection<>(ReservationList);
@@ -104,10 +95,6 @@ public class ReservationFragment extends LogFragment {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 recyclerView.setAdapter(new ReservationAdapter((Reservation[]) ReservationCollection.reservations.toArray(new Reservation[0])));
 
-                /*ArrayAdapter<Reservation> TaskListArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ReservationList);
-                ListView TaskDataListView = (ListView) externalView.findViewById(android.R.id.list);
-                TaskDataListView.setAdapter(TaskListArrayAdapter);*/
-
             }
 
             @Override
@@ -116,7 +103,7 @@ public class ReservationFragment extends LogFragment {
             }
         };
 
-        query.addValueEventListener(valueEventListener);
+        ref.addValueEventListener(valueEventListener);
 
 
         return externalView;

@@ -164,34 +164,34 @@ public class FirebaseWrapper {
         }
 
         //FUNZIONE PER PRENDERE IL RIFERIMENTO AL DB DELLE PRENOTAZIONI
-        public static DatabaseReference getDbReservation()
-        {
-            DatabaseReference ref =
-                    FirebaseDatabase
-                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
-                            .getReference("Reservation");
+        public static DatabaseReference getDbReservation() {
 
             // Return only the events of the current user
-            String uid = new FirebaseWrapper.Auth().getUid();
+            String uid = new Auth().getUid();
             if (uid == null) {
                 return null;
             }
 
-            return ref.child(uid);
+            DatabaseReference ref =
+                    FirebaseDatabase
+                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
+                            .getReference("Reservation/" + uid);
+
+            return ref.child("key");
 
         }
 
         public static DatabaseReference getDbReservationLettura()
         {
-            DatabaseReference ref =
-                    FirebaseDatabase
-                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
-                            .getReference("Reservation");
-
-            String uid = new FirebaseWrapper.Auth().getUid();
+            String uid = new Auth().getUid();
             if (uid == null) {
                 return null;
             }
+
+            DatabaseReference ref =
+                    FirebaseDatabase
+                            .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
+                            .getReference("Reservation/"+ uid);
 
             return ref;
 
