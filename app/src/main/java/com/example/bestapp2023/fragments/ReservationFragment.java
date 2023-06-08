@@ -1,5 +1,8 @@
 package com.example.bestapp2023.fragments;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Build;
@@ -25,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.activities.BookingReminderService;
 import com.example.bestapp2023.activities.MainActivity;
 import com.example.bestapp2023.activities.PlaceAdapter;
 import com.example.bestapp2023.activities.RecyclerViewActivity;
@@ -114,25 +118,6 @@ public class ReservationFragment extends LogFragment {
 
         query.addValueEventListener(valueEventListener);
 
-
-
-
-        // CODICE PER CHIAMARE WORKER CHE OGNI 10 MINUTI CONTROLLA SE C'è UNA PRENOTAZIONE
-
-        /*
-        // Crea un oggetto JobScheduler
-        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-
-        // Crea un oggetto per il lavoro
-        ComponentName componentName = new ComponentName(this, BookingReminderService.class);
-        JobInfo jobInfo = new JobInfo.Builder(1, componentName)
-        .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-        .setPeriodic(60 * 60 * 1000) // Esegui ogni ora
-        .build();
-
-        // Avvia il lavoro
-        jobScheduler.schedule(jobInfo);
-         */
 
         return externalView;
     }

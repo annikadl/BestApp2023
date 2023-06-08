@@ -19,6 +19,9 @@ import java.util.List;
 public class BookingReminderService extends JobService {
     private static final String TAG = "BookingReminderService";
 
+    ReservationFragment ReservationFragment = new ReservationFragment();
+    //List<Reservation> ReservationList = new ArrayList<Reservation>();
+
     @Override
     public boolean onStartJob(JobParameters params) {
         // Avvia il lavoro in background per inviare i promemoria delle prenotazioni
@@ -50,6 +53,7 @@ public class BookingReminderService extends JobService {
     private List<Reservation> getFutureBookings() {
         List<Reservation> futureBookings = new ArrayList<>();
         // TODO: leggere da db le prenotazioni future
+        futureBookings = ReservationFragment.getReservationList();
         return futureBookings;
     }
 
@@ -57,7 +61,7 @@ public class BookingReminderService extends JobService {
 
         String tmp_string = booking.getTime();
         Double value = Double.parseDouble(tmp_string);
-        long reminderTime = (long) (value - (15 * 60 * 1000)); // Notifica 15 minuti prima dell'evento
+        long reminderTime = (long) (value - (90 * 60 * 1000)); // Notifica 15 minuti prima dell'evento
 
         // Costruisci la notifica per il promemoria della prenotazione
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")

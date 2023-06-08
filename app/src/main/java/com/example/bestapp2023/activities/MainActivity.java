@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Intent;
 
 import android.content.pm.PackageManager;
@@ -222,7 +225,21 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+        // CODICE PER CHIAMARE WORKER CHE OGNI 10 MINUTI CONTROLLA SE C'è UNA PRENOTAZIONE
 
+
+        // Crea un oggetto JobScheduler
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(MainActivity.JOB_SCHEDULER_SERVICE);
+
+        // Crea un oggetto per il lavoro
+        ComponentName componentName = new ComponentName(this, BookingReminderService.class);
+        JobInfo jobInfo = new JobInfo.Builder(1, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPeriodic(60 * 60 * 1000) // Esegui ogni ora
+                .build();
+
+        // Avvia il lavoro
+        jobScheduler.schedule(jobInfo);
 
 
 

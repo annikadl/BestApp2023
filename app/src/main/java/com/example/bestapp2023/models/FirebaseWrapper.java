@@ -188,6 +188,10 @@ public class FirebaseWrapper {
                             .getInstance("https://bestapp2023-2b115-default-rtdb.firebaseio.com/")
                             .getReference("Reservation");
 
+            String uid = new FirebaseWrapper.Auth().getUid();
+            if (uid == null) {
+                return null;
+            }
 
             return ref;
 
