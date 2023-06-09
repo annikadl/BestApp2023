@@ -1,47 +1,29 @@
 package com.example.bestapp2023.fragments;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bestapp2023.R;
-import com.example.bestapp2023.activities.BookingReminderService;
-import com.example.bestapp2023.activities.MainActivity;
-import com.example.bestapp2023.activities.PlaceAdapter;
-import com.example.bestapp2023.activities.RecyclerViewActivity;
 import com.example.bestapp2023.activities.ReservationAdapter;
 import com.example.bestapp2023.models.FirebaseWrapper;
-import com.example.bestapp2023.models.MyPlaces;
 import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
