@@ -237,14 +237,12 @@ public class MainActivity extends AppCompatActivity{
 
         /////////////////////////////////// SERVIZIO PERIODICO  ////////////////////////////////////////
         //CREO WORKER
-        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(MyWorker.class,
-                1, TimeUnit.DAYS,
-                1, TimeUnit.HOURS).addTag(TAG).build();
 
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(MyWorker.class,
+                24, TimeUnit.HOURS,
+                23, TimeUnit.HOURS).addTag(TAG).setInitialDelay(0, TimeUnit.HOURS).build();
         //LANCIO IL WORKER, keep è la policy per cui mantiene il worker preesistente se lo si ha già
         WorkManager.getInstance(MainActivity.this).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
-
-
     }
 
     /////////////////////////////////// LOGICA LOGIN E SIGN UP ////////////////////////////////////////

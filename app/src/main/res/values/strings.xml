@@ -42,6 +42,9 @@
         <item>Pino</item>
     </string-array>
 
+    <!-- INVITE FRIENDS FRAGMENT-->
+    <string name="invitefriendstext">Invita i tuoi amici: per te e per loro il 15% di sconto sulla prima prenotazione!</string>
+
     <!-- Dropdown menu orario prenotazione -->
     <string-array name="array_orario">
         <item>12:00</item>
@@ -91,8 +94,7 @@
 
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- mi sa che ho fatto -->
+    <!-- Stringhe per le prenotazioni-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="orario_di_apertura">Orario di apertura</string>
     <string name="orario_di_chiusura">Orario di chiusura</string>
@@ -107,6 +109,7 @@
     <string name="orario">Orario:</string>
     <string name="numero_persone">Numero persone:</string>
     <string name="oggi">Oggi</string>
+    <string name="riprenotare">Per riprenotare, tornare alla home ed effettuare una nuova selezione</string>
 
 
 </resources>

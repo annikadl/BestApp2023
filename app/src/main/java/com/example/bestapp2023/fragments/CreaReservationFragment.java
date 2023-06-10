@@ -68,6 +68,10 @@ public class CreaReservationFragment extends LogFragment {
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_creareservation, container, false);
 
+        //Creo la reference per la TextView con il testo della riprenotazione e la rendo non visibile
+        TextView riprenotare = externalView.findViewById(R.id.riprenotazione_text);
+        riprenotare.setVisibility(View.GONE);
+
         // SPINNER ORARIO
 
         Spinner dd_orario = externalView.findViewById(R.id.dd_orario);
@@ -192,6 +196,9 @@ public class CreaReservationFragment extends LogFragment {
 
                 // bottone per prenotare cliccabile una volta sola, così non faccio prenotazioni uguali ricliccandolo
                 conferma_prenotazione.setClickable(false);
+
+                //rendo il testo della riprenotazione visibile
+                riprenotare.setVisibility(View.VISIBLE);
 
                 //SCRIVO NEL DB LA NUOVA PRENOTAZIONE
                 Reservation reservation = new Reservation(ristoranti,username,"22/01/2022",persone,orario,0);

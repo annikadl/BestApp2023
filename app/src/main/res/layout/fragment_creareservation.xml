@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InviteFriendsFragment"
+    tools:context=".fragments.CreaReservationFragment"
     >
 
     <RelativeLayout
@@ -112,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="400dp"
                 android:gravity="center_horizontal"
+                android:orientation="vertical"
                 >
 
                 <Button
@@ -123,7 +124,20 @@
                     >
                 </Button>
 
+                <TextView
+                    android:id="@+id/riprenotazione_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/arancione4"
+                    android:layout_below="@id/conferma_prenotazione"
+                    android:layout_marginTop="50dp"
+                    android:textAlignment="center"
+                    android:text="@string/riprenotare"
+                    android:textColor="@color/arancione2"
+                    android:textSize="13sp" />
+
              </LinearLayout>
+
 
         </RelativeLayout>
 
