@@ -27,12 +27,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:background="@color/arancione4"
                     android:padding="20dp">
+
+                    <Button
+                        android:id="@+id/myprofile_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:backgroundTint="@color/testi"
+                        app:cornerRadius="20dp"
+                        android:text="Il mio profilo"
+                        android:clickable="false">
+                    </Button>
+
 
                     <!-- Immagine del profilo-->
                     <!-- al posto del colore bianco di sfondo ci vuole l'immagine da database-->

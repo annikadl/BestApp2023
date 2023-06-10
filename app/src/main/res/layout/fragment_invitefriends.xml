@@ -19,14 +19,18 @@
         android:fitsSystemWindows="true"
         tools:context=".fragments.InviteFriendsFragment" >
 
-        <TextView
+        <Button
             android:id="@+id/invitefriends_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/arancione4"
-            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:backgroundTint="@color/testi"
+            app:cornerRadius="20dp"
             android:text="@string/invitefriendstext"
-            android:textSize="20sp" />
+            android:clickable="false">
+        </Button>
+
 
         <View
             android:id="@+id/linea"

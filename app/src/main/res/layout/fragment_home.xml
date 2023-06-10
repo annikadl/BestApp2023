@@ -22,6 +22,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/intro_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:backgroundTint="@color/testi"
+            app:cornerRadius="20dp"
+            android:text="Prenota un posto a tavola per oggi!"
+            android:clickable="false">
+        </Button>
+
+
         <ScrollView
             android:id="@+id/layout_seekbar"
             android:layout_width="match_parent"

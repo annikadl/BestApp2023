@@ -15,7 +15,7 @@
             android:id="@+id/top_toolbar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/arancione2"
+            android:background="@color/LagoonBarra"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -23,7 +23,7 @@
                 android:id="@+id/back"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/arancione2"
+                android:backgroundTint="@color/LagoonBarra"
                 android:gravity="left"
                 android:onClick="this"
                 android:src="@drawable/iconsleftarrow"
@@ -62,14 +62,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="110dp"
-            android:background="@color/arancione2">
+            android:background="@color/LagoonBarra">
 
             <ImageButton
                 android:id="@+id/home"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/arancione2"
+                android:backgroundTint="@color/LagoonBarra"
                 android:gravity="center"
                 android:onClick="this"
                 android:src="@drawable/iconshomesmall"
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_gravity="right|center_horizontal"
-                android:backgroundTint="@color/arancione2"
+                android:backgroundTint="@color/LagoonBarra"
                 android:gravity="center"
                 android:onClick="this"
                 android:src="@drawable/iconsprofilesmall"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_gravity="left|center_horizontal"
-                android:backgroundTint="@color/arancione2"
+                android:backgroundTint="@color/LagoonBarra"
                 android:gravity="center"
                 android:onClick="this"
                 android:src="@drawable/iconsfriendsmall"
