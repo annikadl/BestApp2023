@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/arancione4"
+        android:background="@drawable/bbbackgr"
         tools:context=".LoginFragment">
 
         <androidx.cardview.widget.CardView
@@ -52,7 +52,7 @@
                         android:id="@+id/loginText2"
                         android:textSize="16dp"
                         android:textAlignment="center"
-                        android:textColor="@color/arancione3" />
+                        android:textColor="@color/arancione1" />
 
                     <Button
                         android:layout_width="match_parent"

@@ -119,10 +119,12 @@
                     android:id="@+id/conferma_prenotazione"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Conferma prenotazione"
-                    android:background="@drawable/spinner_rounded_corners"
-                    >
-                </Button>
+                    android:includeFontPadding="false"
+                    android:text="Conferma Prenotazione"
+                    android:textSize="18sp"
+                    android:backgroundTint="@color/arancione2"
+                    app:cornerRadius="20dp"/>
+
 
                 <TextView
                     android:id="@+id/riprenotazione_text"
@@ -134,7 +136,10 @@
                     android:textAlignment="center"
                     android:text="@string/riprenotare"
                     android:textColor="@color/arancione2"
-                    android:textSize="13sp" />
+                    android:textSize="14sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    />
 
              </LinearLayout>
 

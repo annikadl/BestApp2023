@@ -110,6 +110,11 @@
     <string name="numero_persone">Numero persone:</string>
     <string name="oggi">Oggi</string>
     <string name="riprenotare">Per riprenotare, tornare alla home ed effettuare una nuova selezione</string>
+    <string name="il_mio_profilo">Il mio profilo</string>
+    <string name="condividi_bestapp2023">Condividi BestApp2023</string>
+    <string name="invita">INVITA</string>
+    <string name="profilo">PROFILO</string>
+    <string name="i_miei_dati">I miei dati BestApp2023</string>
 
 
 </resources>

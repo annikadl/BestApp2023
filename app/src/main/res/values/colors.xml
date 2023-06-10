@@ -11,12 +11,13 @@
     <!-- SONO DOPPI PERCHé GLI HO CAMBIATO IL NOME PER SEMPLICITà MA DA QUALCHE PARTE NON LI RICONOSCE -->
 
     <!-- nostra lista colori -->
-    <color name="arancione1">#FF7514</color>
-    <color name="LagoonBarra">#5185DB</color>
-    <color name="arancione2">#7F9ED1</color>
-    <color name="testi">#FF781F</color>
+    <color name="arancione1">#EC8540</color>  <!-- dettagli arancioni -->
+    <color name="LagoonBarra">#FFA94D</color>  <!-- barra -->
+    <color name="arancione2">#EC8540</color> <!-- bottoni -->
+    <color name="testi">#FFA94D</color>  <!-- testi -->
     <color name="arancione3">#FFA500</color>
-    <color name="arancione4">#FFCC99</color>
+    <color name="arancione4">#FFF7F1</color>  <!-- sfondo -->
+    <color name="background_profilo">#FDCDA7</color>
     <color name="arancione5">#FEE684</color>
     <color name="azzurro1">#FF03DAC5</color>
     <color name="azzurro2">#FF018786</color>
