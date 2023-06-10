@@ -2,6 +2,7 @@ package com.example.bestapp2023.fragments;
 
 import static java.util.logging.Logger.global;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.bestapp2023.R;
+import com.example.bestapp2023.activities.MainActivity;
 import com.example.bestapp2023.models.FirebaseWrapper;
 import com.example.bestapp2023.models.Reservation;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +35,13 @@ public class ProfileFragment extends LogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.initArguments();
+    }
+
+    //funzione per andare in un'altra activity
+    private void goToActivity(Class<?> activity) {
+        Intent intent = new Intent(getActivity(), activity);
+        getActivity().startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
@@ -70,15 +79,15 @@ public class ProfileFragment extends LogFragment {
             public void onClick(View externalView) {
                 auth.signOut();
 
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                /*FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
-                /*// Creare un'istanza del LoginFragment
+                // Creare un'istanza del LoginFragment
                 LoginFragment loginFragment = new LoginFragment();
 
                 // Eseguire una transazione di fragment e sostituire il fragment corrente con il LoginFragment
                 fragmentManager.beginTransaction()
                         .replace(R.id.container_login, loginFragment)
-                        .commit();*/
+                        .commit();
 
                 //Creare un'istanza dell'HomeFragment
                 HomeFragment homeFragment = new HomeFragment();
@@ -86,7 +95,10 @@ public class ProfileFragment extends LogFragment {
                 //Eseguire una transazione di fragment e sostituire il fragment corrente con l'HomeFragment
                 fragmentManager.beginTransaction()
                         .replace(R.id.container_login, homeFragment)
-                        .commit();
+                        .commit();*/
+
+                goToActivity(MainActivity.class);
+
             }
         });
 

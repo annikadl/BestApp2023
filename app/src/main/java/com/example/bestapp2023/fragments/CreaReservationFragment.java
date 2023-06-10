@@ -39,6 +39,7 @@ public class CreaReservationFragment extends LogFragment {
     String orario ;
     String persone;
     String ristoranti;
+    String mex_conferma_prenotazione = "Prenotazione effettuata correttamente";
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -66,10 +67,6 @@ public class CreaReservationFragment extends LogFragment {
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
         View externalView = inflater.inflate(R.layout.fragment_creareservation, container, false);
-
-        // metto la txtview con il messaggio di avvenuta prenotazione invisibile finché non clicco su conferma prenotazione
-        TextView mex_conferma_prenotazione = externalView.findViewById(R.id.mex_conferma_prenotazione);
-        mex_conferma_prenotazione.setVisibility(View.GONE);
 
         // SPINNER ORARIO
 
@@ -186,7 +183,12 @@ public class CreaReservationFragment extends LogFragment {
             @Override
             public void onClick(View view) {
                 // rendo visibile il messaggio di prenotazione avvenuta
-                mex_conferma_prenotazione.setVisibility(View.VISIBLE);
+                //mex_conferma_prenotazione.setVisibility(View.VISIBLE);
+
+                //mando un Toast per avvisare l'utente della prenotazione avvenuta
+                Toast
+                        .makeText(getActivity(), mex_conferma_prenotazione, Toast.LENGTH_SHORT)
+                        .show();
 
                 // bottone per prenotare cliccabile una volta sola, così non faccio prenotazioni uguali ricliccandolo
                 conferma_prenotazione.setClickable(false);

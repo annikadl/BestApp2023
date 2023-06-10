@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Network operations: https://developer.android.com/training/basics/network-ops/connecting -->
 
-    <!--
+    <!-- Network operations: https://developer.android.com/training/basics/network-ops/connecting -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    -->
 
     <!-- GPS: https://developer.android.com/training/location/permissions -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- CONTACTS: https://developer.android.com/training/contacts-provider/retrieve-names -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Notifiche e CP Contatti -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 

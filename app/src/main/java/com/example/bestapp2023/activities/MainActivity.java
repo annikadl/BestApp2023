@@ -70,50 +70,10 @@ public class MainActivity extends AppCompatActivity{
     // FRAGMENT MANAGER
     androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
 
-    //CREO DATASTORE PER GESTIRE IL SALVATAGGIO DEL WORKER
+    //tag da usare per dare il riferimento della MainActivity al worker
+    private static final String TAG = MainActivity.class.getCanonicalName();
 
-    private static final String SP_WORKER_STARTED = "worker_start";
-
-    private RxDataStore<androidx.datastore.preferences.core.Preferences> dataStore = new RxPreferenceDataStoreBuilder(this,/*name=*/"WorkerActivity").build();
-
-    //GENERA UNA CHIAVE IL CUI IDENTIFICATIVO è WORKER START PER UN OGGETTO BOOLEANO
-    private Preferences.Key<Boolean> EXAMPLE_SP = PreferencesKeys.booleanKey(SP_WORKER_STARTED);
-
-    //LEGGI CHIAVE DENTRO IL DATASTORE
-
-    private boolean isWorkerStarted(){
-
-        //Boolean per aspettare la risposta dalla richiesta del datastore
-
-        Flowable<Boolean> val =
-                dataStore.data().map(preferences -> {
-                    return preferences.contains(EXAMPLE_SP)?preferences.get(EXAMPLE_SP) : false;
-                });
-        //Sto aspettando la rispsosta , problema non carica la schermata, soluzione -> genero nuovo thread
-        Boolean b = val.blockingFirst();
-        return  b != null && b;
-    }
-
-
-    private Boolean condition = null;
-    private final Object syncObject = new Object();
-
-
-    private void setWorkerStarted() {
-        Single<Preferences> updateResult = dataStore.updateDataAsync(prefsIn -> {
-            MutablePreferences mutablePreferences = prefsIn.toMutablePreferences();
-
-            mutablePreferences.set(EXAMPLE_SP, true);
-            return Single.just(mutablePreferences);
-        });
-
-        // NOTE: The update is completed once updateResult is completed.
-        // To wait for the result: http://reactivex.io/RxJava/3.x/javadoc/io/reactivex/rxjava3/core/Single.html#blockingSubscribe--
-        // TODO: NEVER wait in the main thread --> Possible ANR (Application Non Responding) error
-        updateResult.blockingSubscribe();
-    }
-
-    //Funzione per andare in una nuova acrivity
+    //Funzione per andare in una nuova activity
     private void goToActivity(Class<?> activity) {
         Intent intent = new Intent(this, activity);
         this.startActivity(intent);
@@ -276,38 +236,13 @@ public class MainActivity extends AppCompatActivity{
 
 
         /////////////////////////////////// SERVIZIO PERIODICO  ////////////////////////////////////////
+        //CREO WORKER
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(MyWorker.class,
+                1, TimeUnit.DAYS,
+                1, TimeUnit.HOURS).addTag(TAG).build();
 
-        //Crea un nuovo thread
-        new Thread(new DataStorageThread()).start();
-        new Thread(() -> {
-            synchronized (syncObject) {
-                while (condition == null) {
-                    try {
-                        Log.d("Thread","PROVA ROBA");
-                        syncObject.wait();
-                    } catch (InterruptedException e) {
-                        // TODO: Handle this
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-
-            if (condition) {
-
-
-                //CREO WORKER
-                PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(MyWorker.class,
-                        1, TimeUnit.MINUTES,
-                        15, TimeUnit.SECONDS).build();
-
-                //LANCIO IL WORKER, keep è la policy per cui mantiene il worker preesistente se lo si ha già
-                WorkManager.getInstance(MainActivity.this).enqueueUniquePeriodicWork("DeleteReservationDB", ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE, periodicWorkRequest);
-
-                setWorkerStarted();
-
-            }
-        }).start();
-
+        //LANCIO IL WORKER, keep è la policy per cui mantiene il worker preesistente se lo si ha già
+        WorkManager.getInstance(MainActivity.this).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
 
 
     }
@@ -342,20 +277,6 @@ public class MainActivity extends AppCompatActivity{
             Intent intent = new Intent(this, SplashActivity.class);
             this.startActivity(intent);
             this.finish();
-        }
-    }
-
-    //CLASSE PER GENERARE UN THREAD ED EVITARE BLOCCHI
-    private class DataStorageThread implements Runnable{
-
-        @Override
-        public void run() {
-
-            synchronized (syncObject) {
-                condition = !MainActivity.this.isWorkerStarted();
-                syncObject.notify();
-
-            }
         }
     }
 
