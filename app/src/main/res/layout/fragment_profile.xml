@@ -32,7 +32,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:background="@drawable/bbbackgr"
+                    android:background="@drawable/backgr_profile"
                     android:padding="20dp">
 
                 <LinearLayout
