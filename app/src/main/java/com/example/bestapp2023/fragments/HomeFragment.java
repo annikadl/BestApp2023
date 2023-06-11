@@ -171,6 +171,12 @@ public class HomeFragment extends LogFragment {
                             .makeText(getActivity(), "Seleziona una tipologia", Toast.LENGTH_SHORT)
                             .show();
                 }
+                else if (Type == ""){
+                    //mando un Toast per avvisare l'utente di scegliere una tipologia
+                    Toast
+                            .makeText(getActivity(), "Seleziona una tipologia", Toast.LENGTH_SHORT)
+                            .show();
+                }
                 else {
                     Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
                     //PASSO COME BUCKET LE VARIABILI DA METTERE NELLA QUERY
