@@ -53,7 +53,7 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
+                    android:text="@string/nome_ristorante_crearres"
                     android:gravity="center"
                     >
                 </TextView>
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Orario"
+                    android:text="@string/orario_ristorante_creares"
                     android:gravity="center"
                     >
                 </TextView>
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="N° persone"
+                    android:text="@string/n_persone_creares"
                     android:gravity="center"
                     >
                 </TextView>
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="Conferma Prenotazione"
+                    android:text="@string/conferma_prenotazione_button"
                     android:textStyle="italic"
                     android:textSize="18sp"
                     android:backgroundTint="@color/arancione2"

@@ -8,7 +8,7 @@
     <!-- login e sign up -->
     <string name="nome">Nome e cognome</string>
     <string name="email">Email</string>
-    <string name="password">password</string>
+    <string name="password">Password</string>
     <string name="password2">inserisci di nuovo la password</string>
     <string name="loginText">Accedi</string>
     <string name="signupText">Registrati</string>
@@ -115,6 +115,13 @@
     <string name="invita">INVITA</string>
     <string name="profilo">PROFILO</string>
     <string name="i_miei_dati">I miei dati BestApp2023</string>
+    <string name="mangia_con_bestapp2023">Mangia con BestApp2023</string>
+    <string name="prenota_ora">PRENOTA ORA</string>
+    <string name="nuova_prenotazione_button">Nuova prenotazione</string>
+    <string name="nome_ristorante_crearres">Nome</string>
+    <string name="orario_ristorante_creares">Orario</string>
+    <string name="n_persone_creares">N° persone</string>
+    <string name="conferma_prenotazione_button">Conferma Prenotazione</string>
 
 
 </resources>

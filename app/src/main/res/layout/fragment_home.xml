@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/arancione2"
             android:textSize="18sp"
-            android:text="Mangia con BestApp2023"
+            android:text="@string/mangia_con_bestapp2023"
             android:textStyle="italic"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
@@ -47,7 +47,7 @@
             android:textColor="@color/arancione2"
             android:textSize="30sp"
             android:textStyle="italic"
-            android:text="PRENOTA ORA"
+            android:text="@string/prenota_ora"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
         </TextView>
