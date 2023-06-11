@@ -44,18 +44,6 @@ public class HomeFragment extends LogFragment {
         super.onCreate(savedInstanceState);
         this.initArguments();
 
-
-
-       /* Spinner citta_menu = getView().findViewById(R.id.citta_menu);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.citta, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        citta_menu.setAdapter(adapter); */
-
-
     }
 
     @Override
@@ -176,13 +164,23 @@ public class HomeFragment extends LogFragment {
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
-                //PASSO COME BUCKET LE VARIABILI DA METTERE NELLA QUERY
-                intent.putExtra("Type",Type);
-                intent.putExtra("City",City);
-                startActivity(intent);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+
+                if (Type == null){
+                    //mando un Toast per avvisare l'utente di scegliere una tipologia
+                    Toast
+                            .makeText(getActivity(), "Seleziona una tipologia", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), RecyclerViewActivity.class);
+                    //PASSO COME BUCKET LE VARIABILI DA METTERE NELLA QUERY
+                    intent.putExtra("Type", Type);
+                    intent.putExtra("City", City);
+                    startActivity(intent);
+                    ((Activity) getActivity()).overridePendingTransition(0, 0);
+                }
             }
+
         });
 
 

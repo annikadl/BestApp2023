@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/arancione2"
                     android:textSize="18sp"
+                    android:textStyle="italic"
                     android:text="@string/i_miei_dati">
                 </TextView>
 
@@ -56,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/arancione2"
                     android:textSize="30sp"
-                    android:textStyle="bold"
+                    android:textStyle="italic"
                     android:text="@string/profilo">
                 </TextView>
 
@@ -120,6 +121,7 @@
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:backgroundTint="@color/arancione2"
+                        android:textStyle="italic"
                         app:cornerRadius="20dp" />
 
                     <Button
@@ -129,6 +131,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="110dp"
                         android:backgroundTint="@color/arancione2"
+                        android:textStyle="italic"
                         android:gravity="center"
                         android:text="@string/signout"
                         android:textSize="18sp"

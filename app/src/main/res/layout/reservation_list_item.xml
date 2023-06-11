@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/arancione2"
             android:text="@string/ristorante"/>
 
         <TextView
@@ -52,6 +53,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/arancione2"
             android:text="@string/numero_persone"/>
 
         <TextView
@@ -77,6 +79,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/arancione2"
             android:text="@string/orario"/>
 
         <TextView
@@ -102,6 +105,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/arancione2"
             android:text="@string/data"/>
 
         <TextView

@@ -32,18 +32,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/new_reservation"
                 android:text="Nuova prenotazione"
+                android:textStyle="italic"
                 android:background="@android:color/transparent"
                 android:gravity="right">
 
-            </Button>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/first_log"
-                android:text="Per prenotare esegui il login"
-                android:background="@android:color/transparent"
-                android:gravity="right">
             </Button>
 
 

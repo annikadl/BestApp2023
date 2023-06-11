@@ -27,7 +27,9 @@
                 android:layout_margin="5dp"
                 android:text="@string/citt"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"
+                />
 
             <TextView
                 android:id="@+id/cityid"
@@ -48,7 +50,8 @@
                 android:layout_margin="5dp"
                 android:text="@string/nome_ristorante"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"/>
 
             <TextView
                 android:id="@+id/nameid"
@@ -69,7 +72,8 @@
                 android:layout_margin="5dp"
                 android:text="@string/tipo"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"/>
 
             <TextView
                 android:id="@+id/typeid"
@@ -91,7 +95,8 @@
                 android:layout_margin="5dp"
                 android:text="@string/via"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"/>
 
             <TextView
                 android:id="@+id/addressid"
@@ -112,7 +117,8 @@
                 android:layout_margin="5dp"
                 android:text="@string/orario_di_apertura"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"/>
 
             <TextView
                 android:id="@+id/openinid"
@@ -133,7 +139,8 @@
                 android:layout_margin="5dp"
                 android:text="@string/orario_di_chiusura"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/arancione2"/>
 
             <TextView
                 android:id="@+id/closeid"

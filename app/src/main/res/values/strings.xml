@@ -96,12 +96,12 @@
 
     <!-- Stringhe per le prenotazioni-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="orario_di_apertura">Orario di apertura</string>
-    <string name="orario_di_chiusura">Orario di chiusura</string>
-    <string name="via">Via</string>
-    <string name="tipo">Tipo</string>
-    <string name="nome_ristorante">Nome</string>
-    <string name="citt">Città</string>
+    <string name="orario_di_apertura">Orario di apertura:</string>
+    <string name="orario_di_chiusura">Orario di chiusura:</string>
+    <string name="via">Via:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="nome_ristorante">Nome:</string>
+    <string name="citt">Città:</string>
     <string name="nuova_prenotazione">Nuova prenotazione</string>
     <string name="prenotazione_avvenuta_correttamente">Prenotazione avvenuta correttamente!</string>
     <string name="ristorante">Ristorante:</string>

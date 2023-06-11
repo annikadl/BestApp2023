@@ -121,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
                     android:text="Conferma Prenotazione"
+                    android:textStyle="italic"
                     android:textSize="18sp"
                     android:backgroundTint="@color/arancione2"
                     app:cornerRadius="20dp"/>
