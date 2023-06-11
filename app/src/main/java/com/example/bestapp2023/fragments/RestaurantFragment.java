@@ -30,7 +30,7 @@ public class RestaurantFragment extends LogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         // See: https://developer.android.com/reference/android/view/LayoutInflater#inflate(org.xmlpull.v1.XmlPullParser,%20android.view.ViewGroup,%20boolean)
-        View externalView = inflater.inflate(R.layout.fragment_restaurant, container, false);
+         View externalView = inflater.inflate(R.layout.fragment_restaurant, container, false);
 
         return externalView;
     }
